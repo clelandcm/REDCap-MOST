@@ -1,0 +1,113 @@
+---
+title: "REDCap for MOST Manual"
+author: "Chuck Cleland"
+date: '`r format(Sys.time(), "%B %d, %Y")`'
+output:
+  html_document:
+    highlight: tango
+    theme: cerulean
+    toc: yes
+    toc_depth: 5
+  word_document:
+    toc: yes
+    toc_depth: '5'
+always_allow_html: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.align = 'center', fig.width = 12, fig.height = 10)
+options(width=110)
+```
+
+# MOST Study Elements
+## Assessments (screening, baseline & follow-up interviews)
+## Locator information with ongoing updates
+## Intervention component activities (individual sessions; groups; technology)
+## Condition-specific activities and data collection
+## Need to monitor and drive completion of study activities (intervention and assessment) which include activities common to all participants as well as condition-specific activities
+# REDCap Overview
+
+This manual is not meant to replace extensive and excellent documentation of REDCap
+	We will point to specific REDCap documentation
+	<https://projectredcap.org/resources/videos/>
+
+# Types of REDCap projects
+## Longitudinal trial
+## Longitudinal+Scheduling
+# Ways to build a REDCap project
+## Online designer
+## Data Dictionary
+
+# Events
+## Record-specific events
+## Days-offset
+### Specifies the “ideal” time for an activity as well as a range during which the activity can be completed Defining Longitudinal Events (5 min)
+### Each event can have one or more instruments Designating Instruments for Events (3 min)
+### Events and instruments can be repeated in a longitudinal project Repeating Instruments and Events (33 min)
+
+# Organization of study activities into “Arms”
+## Arms are a way to pull together a collection of events
+### Screening
+### Baseline interview
+### Randomization
+### Each MOST study condition may have an arm devoted to it to facilitate events and data collection that are specific to the condition
+### Follow-up interviews
+
+# Calendar application and scheduling (Scheduling Module (7 min))
+## Schedule for individuals in one place
+## Based on series of events which apply to a specific record (individual participant), the calendar is populated with record-specific events
+## The ideal time for an event can be changed to a time more convenient for the project and participant
+## Calendar can be used to see what events are scheduled and to enter a data collection form associated with the scheduled event (e.g., if the scheduled event is a baseline interview, following the calendar link will open the baseline interview data collection forms).   
+
+# Forms vs. Surveys for Data Collection
+## Forms only when staff-only data entry (e.g., blood draw results)
+## Surveys more flexible (not just staff entering data)
+
+# Interview Items and Other Data Collection Fields
+## Item types
+## Branching (think skip patterns)
+## Piping (putting the response from an earlier data collection element into the content of a later data collection element)
+## Calculated fields
+## Data validation (ensuring a date is in a specific format; ensuring a recorded value is an integer within a specified range)
+
+# Reports
+## Lists of collected fields for all or specific participants
+## Has limitations
+
+# Data Export
+## Pulling REDCap data by API
+## Data from smaller projects can be exported manually within REDCap too
+
+# Things more easily done outside of REDCap
+## Review intervention activity gaps
+## Review follow-up interviewing gaps
+
+# REDCap Development and Production Modes
+## Development for building and testing the project
+## Production for real data collection and project management
+
+# REDCap is actively developed
+## Need to be aware of new features and system changes which may impact aspects of your project
+## New REDCap features may require changes to this manual over time
+
+# Supplemental File: A MOST REDCap project providing a minimal example
+## Screening and baseline interviews
+## Locator
+## Randomization to conditions
+### Stratification factor
+### Full factorial with two components, each with two levels (i.e., 4 study conditions)
+
+# Fields related to intervention activities
+## Activity
+## Date
+## Duration
+## Staff
+
+## First follow-up interview
+## Second and final follow-up interview
+
+* The idea for the example project is to illustrate how elements common in MOST studies are organized in REDCap. The example is intentionally minimal (only 4 conditions; a small number of items for each interview).
+* The manual will include REDCap screenshots. The images below give an idea, but final version of images can zoom in more effectively on the most relevant content.
+ 
+
+         
