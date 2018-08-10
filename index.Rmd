@@ -5,11 +5,11 @@ date: '`r format(Sys.time(), "%B %d, %Y")`'
 output:
   html_document:
     highlight: tango
-    theme: cerulean
-    toc: yes
+    theme: spacelab
+    toc: no
     toc_depth: 5
   word_document:
-    toc: yes
+    toc: no
     toc_depth: '5'
 always_allow_html: yes
 ---
@@ -19,24 +19,83 @@ knitr::opts_chunk$set(echo=TRUE, comment=NA, message=FALSE, warning=FALSE, fig.a
 options(width=110)
 ```
 
+# Overview of the Manual
+
+The goal of this manual is to show how one might setup a [REDCap](https://projectredcap.org) project to support a research study with multiple conditions, such as factorial experiments common in the Multiphase Optimization Strategy ([MOST](https://methodology.psu.edu/ra/most)) framework. This manual is not meant to replace extensive and excellent documentation of REDCap. We will point to specific [REDCap documentation](https://projectredcap.org/resources/videos/) where readers can find more details when appropriate.  As part of this manual, I will create an example REDCap project for a minimal MOST. The ideas in the example can easily be extended to more study conditions and more assessments. 
+
 # MOST Study Elements
-## Assessments (screening, baseline & follow-up interviews)
+
+It is helpful to start by thinking of different elements likely to be needed for MOST and other research studies. Major elements to consider include the following: unique identifiers for individual participants; assessments; participant locator information; and intervention component activities.
+
+## Unique identifiers
+
+MOST studies will typically have a longitudinal component with individual participants returning, in person and/or online, for multiple activities. Consideration should be given to how individuals will be recognized over time.
+
+## Assessments
+
+MOST studies will typically have at least three kinds of assessments of individual participants:
+
+1. screening for eligibility
+2. baseline
+3. follow-up
+
+It is important to keep in mind that some individuals who are screened will not be eligible, and therefore will not continue into the main study. For REDCap setup, the implication is that screening should be a separate piece of the study.
+
 ## Locator information with ongoing updates
-## Intervention component activities (individual sessions; groups; technology)
+
+A number of REDCap fields will be devoted to information to facilitate contacting individual participants for study activities. These may include:
+
+1. cell phone number
+2. email address
+3. mailing address
+4. names and contact information for family members, friends, or service programs likely to know where/how to find an individual participant
+
+These fields may be entered and updated by project staff rather than participants directly. REDCap allows different users (i.e., staff on the project) to have or not have the rights to do different things within the system, and locator may be one part of the project where access is limited to specific staff.
+
+Locator information can be updated when an individual participant is present for an assessment or intervention activity, so think about how updates to locator will be integrated into a regular project workflow.
+
+## Intervention component activities
+
+Think of fields needed within REDCap to document aspects of intervention component delivery. Components may be sessions with individual participants, group activities, or technology (e.g., text messages). At a minimum, the date, staff, duration, and completion status of an activity should be captured. Other fields related to intervention activities may include ratings of fidelity, measures of engagement/satisfaction, and descriptions of content discussed. 
+
 ## Condition-specific activities and data collection
-## Need to monitor and drive completion of study activities (intervention and assessment) which include activities common to all participants as well as condition-specific activities
+
+The typical MOST study will have at least four different conditions and may have many more conditions. Some study activities and data collection will be condition-specific (only relevant for some of the conditions). As will be described below, REDCap has a way to define events and related data collection that are specific to subsets of study participants.
+
+## Need to monitor and drive completion of common and condition-specific study activities
+
+## Keeping track of intervention components and study conditions
+
+As you prepare to set up REDCap to manage a study, it can be useful to create a table showing the study conditions and which levels of each component they receive. Giving the study conditions names, rather than referring to them only with numbers or letters, can make it easier for staff to think about and discuss to activities needed for specific conditions. Consider a 2*2*2 full factorial design. A table to guide REDCap setup may look something like this:
+
+
+
+In this example, study conditions are given animal names. With more than 16 conditions, names may not be helpful/feasible.
+
 # REDCap Overview
 
-This manual is not meant to replace extensive and excellent documentation of REDCap
-	We will point to specific REDCap documentation
-	<https://projectredcap.org/resources/videos/>
+  Before you begin the setup of a MOST study, familiarize yourself with the REDCap system. Good starting points are the [brief](https://flash.its.vanderbilt.edu/html5/redcap/streams/_definst_/redcap_overview_brief02.mp4) and [detailed](https://flash.its.vanderbilt.edu/html5/redcap/streams/_definst_/redcap_overview03.mp4) overview videos.
 
 # Types of REDCap projects
+
+  REDCap offers a variety of project types.
+
 ## Longitudinal trial
 ## Longitudinal+Scheduling
+
+If your interest is to use REDCap to manage the complex set of activities in a typical MOST study (multiple conditions, condition-specific and common activities), you almost certainly want the **Longitudinal+Scheduling** project type.
+
 # Ways to build a REDCap project
+
+  In addition to the various whole project settings within REDCap, there are two ways to build the fields of a REDCap project: the Online designer and the data dictionary.
+
 ## Online designer
+
+  The online designer is an intuitive, point-and-click interface which allows users to build data collection fields.
+
 ## Data Dictionary
+
+  The data dictionary is a comma-delimited file with a very specific structure that can be used to specify fields in REDCap. An advantage of working directly in the data dictionary is that similar items can be setup more quickly by copying and pasting aspects of fields that are shared across the items.
 
 # Events
 ## Record-specific events
@@ -54,6 +113,7 @@ This manual is not meant to replace extensive and excellent documentation of RED
 ### Follow-up interviews
 
 # Calendar application and scheduling (Scheduling Module (7 min))
+
 ## Schedule for individuals in one place
 ## Based on series of events which apply to a specific record (individual participant), the calendar is populated with record-specific events
 ## The ideal time for an event can be changed to a time more convenient for the project and participant
@@ -79,6 +139,9 @@ This manual is not meant to replace extensive and excellent documentation of RED
 ## Data from smaller projects can be exported manually within REDCap too
 
 # Things more easily done outside of REDCap
+
+It is very likely you will want and need to do things with the collected data that are impossible or difficult to do within the REDCap system. A fairly efficient approach is the regularly export data from REDCap, and then generate the 
+
 ## Review intervention activity gaps
 ## Review follow-up interviewing gaps
 
@@ -107,7 +170,9 @@ This manual is not meant to replace extensive and excellent documentation of RED
 ## Second and final follow-up interview
 
 * The idea for the example project is to illustrate how elements common in MOST studies are organized in REDCap. The example is intentionally minimal (only 4 conditions; a small number of items for each interview).
+
 * The manual will include REDCap screenshots. The images below give an idea, but final version of images can zoom in more effectively on the most relevant content.
  
+* Contact **Chuck Cleland** (cmc13@nyu.edu) with any comments or suggestions for improving this manual
 
          
