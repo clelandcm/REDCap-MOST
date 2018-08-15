@@ -11,7 +11,7 @@
 
 <meta name="author" content="Chuck Cleland" />
 
-<meta name="date" content="2018-08-10" />
+<meta name="date" content="2018-08-15" />
 
 <title>REDCap for MOST Manual</title>
 
@@ -299,7 +299,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">REDCap for MOST Manual</h1>
 <h4 class="author"><em>Chuck Cleland</em></h4>
-<h4 class="date"><em>August 10, 2018</em></h4>
+<h4 class="date"><em>August 15, 2018</em></h4>
 
 </div>
 
@@ -350,8 +350,77 @@ $(document).ready(function () {
 </div>
 <div id="keeping-track-of-intervention-components-and-study-conditions" class="section level2">
 <h2>Keeping track of intervention components and study conditions</h2>
-<p>As you prepare to set up REDCap to manage a study, it can be useful to create a table showing the study conditions and which levels of each component they receive. Giving the study conditions names, rather than referring to them only with numbers or letters, can make it easier for staff to think about and discuss to activities needed for specific conditions. Consider a 2<em>2</em>2 full factorial design. A table to guide REDCap setup may look something like this:</p>
-<p>In this example, study conditions are given animal names. With more than 16 conditions, names may not be helpful/feasible.</p>
+<p>As you prepare to set up REDCap to manage a study, it can be useful to create a table showing the study conditions and which levels of each component they receive. Giving the study conditions names, rather than referring to them only with numbers or letters, can make it easier for staff to think about and discuss to activities needed for specific conditions. Consider a 2 x 2 x 2 full factorial design. A table to guide REDCap setup may look something like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Condition</th>
+<th align="center">Name</th>
+<th align="center">Component A</th>
+<th align="center">Component B</th>
+<th align="center">Component C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">tuna</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">salmon</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">marlin</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">bass</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+<td align="center">N</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">trout</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">shark</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">carp</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">halibut</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">N</td>
+</tr>
+</tbody>
+</table>
+<p>In this example, study conditions are given fish names. With more than 16 conditions, names may not be helpful/feasible.</p>
 </div>
 </div>
 <div id="redcap-overview" class="section level1">
@@ -478,11 +547,12 @@ $(document).ready(function () {
 </div>
 <div id="data-from-smaller-projects-can-be-exported-manually-within-redcap-too" class="section level2">
 <h2>Data from smaller projects can be exported manually within REDCap too</h2>
+<p>REDCap can export to the following formats: .</p>
 </div>
 </div>
 <div id="things-more-easily-done-outside-of-redcap" class="section level1">
 <h1>Things more easily done outside of REDCap</h1>
-<p>It is very likely you will want and need to do things with the collected data that are impossible or difficult to do within the REDCap system. A fairly efficient approach is the regularly export data from REDCap, and then generate the</p>
+<p>It is very likely you will want and need to do things with the collected data that are impossible or difficult to do within the REDCap system. A fairly efficient approach is to regularly export data from REDCap, and then generate the summaries and files needed to facilitate project management. The ability to use an application programming interface (API) to pull data from REDCap in a program greatly improves the efficiency of this workflow. I have used a combination of tools including various <a href="https://www.r-project.org">R</a> packages and <a href="https://github.com/">GitHub</a> to support the Heart-to-Heart 2 MOST study. The <a href="https://cran.r-project.org/web/packages/redcapAPI/index.html">redcapAPI R package</a> uses the REDCap API to pull current project data, then there are many data management, summarizing, and list making steps in <a href="https://www.r-project.org">R</a>, and web pages generated in <a href="https://www.r-project.org">R</a> are hosted on <a href="https://github.com/">GitHub</a>. GitHub and similar tools have options for both public and private repositories.</p>
 <div id="review-intervention-activity-gaps" class="section level2">
 <h2>Review intervention activity gaps</h2>
 </div>
@@ -499,6 +569,9 @@ $(document).ready(function () {
 <h2>Production for real data collection and project management</h2>
 </div>
 </div>
+<div id="repeating-events-and-instruments" class="section level1">
+<h1>Repeating Events and Instruments</h1>
+</div>
 <div id="redcap-is-actively-developed" class="section level1">
 <h1>REDCap is actively developed</h1>
 <div id="need-to-be-aware-of-new-features-and-system-changes-which-may-impact-aspects-of-your-project" class="section level2">
@@ -508,8 +581,21 @@ $(document).ready(function () {
 <h2>New REDCap features may require changes to this manual over time</h2>
 </div>
 </div>
-<div id="supplemental-file-a-most-redcap-project-providing-a-minimal-example" class="section level1">
-<h1>Supplemental File: A MOST REDCap project providing a minimal example</h1>
+<div id="a-most-redcap-project-providing-a-minimal-example" class="section level1">
+<h1>A MOST REDCap project providing a minimal example</h1>
+<div id="longitudinal-project-setup-steps" class="section level2">
+<h2>Longitudinal Project Setup Steps</h2>
+<ol style="list-style-type: decimal">
+<li>Create study arms</li>
+<li>Define study events</li>
+<li>Designate data collection instruments to study events</li>
+<li><p>Schedule dates/times for events and participants</p></li>
+<li>Go to the Project Setup tab and locate “Main Project Settings”</li>
+<li>Enable: “Use longitudinal data collection with defined events”?</li>
+<li>Find “Enable optional modules and customizations”</li>
+<li><p>Select “Scheduling Module (longitudinal only)</p></li>
+</ol>
+</div>
 <div id="screening-and-baseline-interviews" class="section level2">
 <h2>Screening and baseline interviews</h2>
 </div>
@@ -548,8 +634,14 @@ $(document).ready(function () {
 <ul>
 <li><p>The idea for the example project is to illustrate how elements common in MOST studies are organized in REDCap. The example is intentionally minimal (only 4 conditions; a small number of items for each interview).</p></li>
 <li><p>The manual will include REDCap screenshots. The images below give an idea, but final version of images can zoom in more effectively on the most relevant content.</p></li>
+<li><p>Supplemental File: A MOST REDCap project providing a minimal example</p></li>
+<li>Nearly every piece of REDCap has a training video embedded inside the application</li>
+<li>Do not be afraid to create a project and explore away in development mode</li>
 <li><p>Contact <strong>Chuck Cleland</strong> (<a href="mailto:cmc13@nyu.edu">cmc13@nyu.edu</a>) with any comments or suggestions for improving this manual</p></li>
 </ul>
+<p>Blumenberg, C., &amp; Barros, A. J. (2016). Electronic data collection in epidemiological research. The use of REDCap in the Pelotas birth cohorts. <em>Applied clinical informatics</em>, 7(3), 672-681.</p>
+<p>Harris, P. A., Taylor, R., Thielke, R., Payne, J., Gonzalez, N., &amp; Conde, J. G. (2009). Research electronic data capture (REDCap)–a metadata-driven methodology and workflow process for providing translational research informatics support. <em>Journal of biomedical informatics</em>, 42(2), 377-381.</p>
+<p>Tomko, R. L., Gray, K. M., Oppenheimer, S. R., Wahlquist, A. E., &amp; McClure, E. A. (2018). Using REDCap for ambulatory assessment: Implementation in a clinical trial for smoking cessation to augment in-person data collection. <em>The American journal of drug and alcohol abuse</em>, 1-16.</p>
 </div>
 </div>
 

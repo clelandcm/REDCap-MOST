@@ -29,7 +29,7 @@ It is helpful to start by thinking of different elements likely to be needed for
 
 ## Unique identifiers
 
-MOST studies will typically have a longitudinal component with individual participants returning, in person and/or online, for multiple activities. Consideration should be given to how individuals will be recognized over time.
+MOST studies will typically have a longitudinal component with individual participants returning, in person and/or online, for multiple activities. Consideration should be given to how individuals will be recognized over time.  
 
 ## Assessments
 
@@ -66,21 +66,33 @@ The typical MOST study will have at least four different conditions and may have
 
 ## Keeping track of intervention components and study conditions
 
-As you prepare to set up REDCap to manage a study, it can be useful to create a table showing the study conditions and which levels of each component they receive. Giving the study conditions names, rather than referring to them only with numbers or letters, can make it easier for staff to think about and discuss to activities needed for specific conditions. Consider a 2*2*2 full factorial design. A table to guide REDCap setup may look something like this:
+As you prepare to set up REDCap to manage a study, it can be useful to create a table showing the study conditions and which levels of each component they receive. Giving the study conditions names, rather than referring to them only with numbers or letters, can make it easier for staff to think about and discuss to activities needed for specific conditions. Consider a 2 x 2 x 2 full factorial design. A table to guide REDCap setup may look something like this:
 
+| Condition | Name    | Component A | Component B | Component C |
+|:---------:|:-------:|:-----------:|:-----------:|:-----------:|
+| 1         | tuna    | Y           | Y           |  Y          |
+| 2         | salmon  | Y           | Y           |  N          |
+| 3         | marlin  | Y           | N           |  Y          |
+| 4         | bass    | Y           | N           |  N          |  
+| 5         | trout   | N           | Y           |  Y          |  
+| 6         | shark   | N           | Y           |  N          |  
+| 7         | carp    | N           | N           |  Y          |  
+| 8         | halibut | N           | N           |  N          |  
 
-
-In this example, study conditions are given animal names. With more than 16 conditions, names may not be helpful/feasible.
+In this example, study conditions are given fish names. With more than 16 conditions, names may not be helpful/feasible.
 
 # REDCap Overview
 
-  Before you begin the setup of a MOST study, familiarize yourself with the REDCap system. Good starting points are the [brief](https://flash.its.vanderbilt.edu/html5/redcap/streams/_definst_/redcap_overview_brief02.mp4) and [detailed](https://flash.its.vanderbilt.edu/html5/redcap/streams/_definst_/redcap_overview03.mp4) overview videos.
+Before you begin the setup of a MOST study, familiarize yourself with the REDCap system. Good starting points are the [brief](https://flash.its.vanderbilt.edu/html5/redcap/streams/_definst_/redcap_overview_brief02.mp4) and [detailed](https://flash.its.vanderbilt.edu/html5/redcap/streams/_definst_/redcap_overview03.mp4) overview videos.
 
 # Types of REDCap projects
 
   REDCap offers a variety of project types.
 
 ## Longitudinal trial
+
+
+
 ## Longitudinal+Scheduling
 
 If your interest is to use REDCap to manage the complex set of activities in a typical MOST study (multiple conditions, condition-specific and common activities), you almost certainly want the **Longitudinal+Scheduling** project type.
@@ -138,9 +150,11 @@ If your interest is to use REDCap to manage the complex set of activities in a t
 ## Pulling REDCap data by API
 ## Data from smaller projects can be exported manually within REDCap too
 
+REDCap can export to the following formats: . 
+
 # Things more easily done outside of REDCap
 
-It is very likely you will want and need to do things with the collected data that are impossible or difficult to do within the REDCap system. A fairly efficient approach is the regularly export data from REDCap, and then generate the 
+It is very likely you will want and need to do things with the collected data that are impossible or difficult to do within the REDCap system. A fairly efficient approach is to regularly export data from REDCap, and then generate the summaries and files needed to facilitate project management. The ability to use an application programming interface (API) to pull data from REDCap in a program greatly improves the efficiency of this workflow. I have used a combination of tools including various [R](https://www.r-project.org) packages and [GitHub](https://github.com/) to support the Heart-to-Heart 2 MOST study. The [redcapAPI R package](https://cran.r-project.org/web/packages/redcapAPI/index.html) uses the REDCap API to pull current project data, then there are many data management, summarizing, and list making steps in [R](https://www.r-project.org), and web pages generated in [R](https://www.r-project.org) are hosted on [GitHub](https://github.com/). GitHub and similar tools have options for both public and private repositories.
 
 ## Review intervention activity gaps
 ## Review follow-up interviewing gaps
@@ -149,11 +163,26 @@ It is very likely you will want and need to do things with the collected data th
 ## Development for building and testing the project
 ## Production for real data collection and project management
 
+# Repeating Events and Instruments
+
 # REDCap is actively developed
 ## Need to be aware of new features and system changes which may impact aspects of your project
 ## New REDCap features may require changes to this manual over time
 
-# Supplemental File: A MOST REDCap project providing a minimal example
+# A MOST REDCap project providing a minimal example
+
+## Longitudinal Project Setup Steps
+1. Create study arms
+2. Define study events
+3. Designate data collection instruments to study events
+4. Schedule dates/times for events and participants
+
+1. Go to the Project Setup tab and locate “Main Project Settings”
+2. Enable: “Use longitudinal data collection with defined events”?
+3. Find “Enable optional modules and customizations”
+4. Select “Scheduling Module (longitudinal only)
+
+
 ## Screening and baseline interviews
 ## Locator
 ## Randomization to conditions
@@ -172,7 +201,17 @@ It is very likely you will want and need to do things with the collected data th
 * The idea for the example project is to illustrate how elements common in MOST studies are organized in REDCap. The example is intentionally minimal (only 4 conditions; a small number of items for each interview).
 
 * The manual will include REDCap screenshots. The images below give an idea, but final version of images can zoom in more effectively on the most relevant content.
- 
+
+* Supplemental File: A MOST REDCap project providing a minimal example
+
+* Nearly every piece of REDCap has a training video embedded inside the application
+* Do not be afraid to create a project and explore away in development mode
 * Contact **Chuck Cleland** (cmc13@nyu.edu) with any comments or suggestions for improving this manual
+
+Blumenberg, C., & Barros, A. J. (2016). Electronic data collection in epidemiological research. The use of REDCap in the Pelotas birth cohorts. _Applied clinical informatics_, 7(3), 672-681.
+
+Harris, P. A., Taylor, R., Thielke, R., Payne, J., Gonzalez, N., & Conde, J. G. (2009). Research electronic data capture (REDCap)--a metadata-driven methodology and workflow process for providing translational research informatics support. _Journal of biomedical informatics_, 42(2), 377-381.
+
+Tomko, R. L., Gray, K. M., Oppenheimer, S. R., Wahlquist, A. E., & McClure, E. A. (2018). Using REDCap for ambulatory assessment: Implementation in a clinical trial for smoking cessation to augment in-person data collection. _The American journal of drug and alcohol abuse_, 1-16.
 
          
