@@ -64,6 +64,10 @@ The typical MOST study will have at least four different conditions and may have
 
 ## Need to monitor and drive completion of common and condition-specific study activities
 
+REDCap divides the whole study into arms, which are groups of events which may be common to all participants or specific to study conditions.  
+
+To be more concrete, a participant in a condition which is assigned to the active level of a component gets events specific to that component (e.g., an intervention session). Other events, such as a baseline interview, will be common to many more participants.  Some events may be univeral, such as a screening interview to determine eligibility for the study.  Thus, event scheduling within the REDCap system is on an as needed basis. 
+
 ## Keeping track of intervention components and study conditions
 
 As you prepare to set up REDCap to manage a study, it can be useful to create a table showing the study conditions and which levels of each component they receive. Giving the study conditions names, rather than referring to them only with numbers or letters, can make it easier for staff to think about and discuss to activities needed for specific conditions. Consider a 2 x 2 x 2 full factorial design. A table to guide REDCap setup may look something like this:
@@ -103,11 +107,11 @@ If your interest is to use REDCap to manage the complex set of activities in a t
 
 ## Online designer
 
-  The online designer is an intuitive, point-and-click interface which allows users to build data collection fields.
+  The [online designer](blob:https://redcap.vanderbilt.edu/3225ff5c-bc41-47d4-b42b-c2ee71ef98d8) is an intuitive, point-and-click interface which allows users to build data collection fields.
 
 ## Data Dictionary
 
-  The data dictionary is a comma-delimited file with a very specific structure that can be used to specify fields in REDCap. An advantage of working directly in the data dictionary is that similar items can be setup more quickly by copying and pasting aspects of fields that are shared across the items.
+  The [data dictionary](blob:https://redcap.vanderbilt.edu/e5d81f52-274c-4713-ad71-e5f6aaec1e3f) is a comma-delimited file with a very specific structure that can be used to specify fields in REDCap. An advantage of working directly in the data dictionary is that similar items can be setup more quickly by copying and pasting aspects of fields that are shared across the items.
 
 # Events
 ## Record-specific events
@@ -124,7 +128,7 @@ If your interest is to use REDCap to manage the complex set of activities in a t
 ### Each MOST study condition may have an arm devoted to it to facilitate events and data collection that are specific to the condition
 ### Follow-up interviews
 
-# Calendar application and scheduling (Scheduling Module (7 min))
+# Calendar application and scheduling
 
 ## Schedule for individuals in one place
 ## Based on series of events which apply to a specific record (individual participant), the calendar is populated with record-specific events
@@ -150,7 +154,7 @@ If your interest is to use REDCap to manage the complex set of activities in a t
 ## Pulling REDCap data by API
 ## Data from smaller projects can be exported manually within REDCap too
 
-REDCap can export to the following formats: . 
+REDCap can export to the following formats: comma-delimited; SPSS; SAS; R; Stata; and XML. 
 
 # Things more easily done outside of REDCap
 
@@ -166,28 +170,58 @@ It is very likely you will want and need to do things with the collected data th
 # Repeating Events and Instruments
 
 # REDCap is actively developed
-## Need to be aware of new features and system changes which may impact aspects of your project
-## New REDCap features may require changes to this manual over time
+Researchers using REDCap to manage MOST and other types of studies need to be aware of new features and system changes which may impact aspects of your project.  These changes are generally enhancements (new features) which don't have to be adopted in the middle of a project.  New REDCap features may require changes to this manual over time.
+
+![**Figure 1**. Project Setup](Screenshot 2018-08-15 14.48.53.png)
 
 # A MOST REDCap project providing a minimal example
 
 ## Longitudinal Project Setup Steps
-1. Create study arms
-2. Define study events
-3. Designate data collection instruments to study events
-4. Schedule dates/times for events and participants
+
+1. Main Project Settings
+
+* Use surveys in this project
+* Use longitudinal data collection with defined events
+* Turn on the **Scheduling module**
+* Turn on the **Randomization module**
+
+2. Create study arms with **Define My Events**
+
+* Screening
+* Assessment
+* tuna
+* salmon
+* marlin
+* bass
+* trout
+* shark
+* carp
+* halibut
+
+Why did we not having the screening steps as part of the Assessment arm?
+
+The first event in the screening arm, a brief eligibility interview, is common to all potential study participants. There could be additional events in the screening arm for things like results of biological tests and documentation of a status related to eligibility criteria (e.g., ).  The goal of the screening arm is to assess various aspects of eligibility criteria, documenting who is eligible and, if not eligible, the reasons why.  Only potential participants who are eligible proceed to the main study.  Informed consent may be obtained from eligible individuals near the end of the screening arm.
+
+The first event in the assessment arm is a baseline interview.  Other events in the assessment arm include one or more follow-up interviews and randomization.  The randomization event in the assessment arm is a manual recording of the assigned study condition by staff.  This can be checked against the condition assigned by the randomization module, with corrections made if needed.
+
+Each randomly assigned study condition will have a different mix of events, depending on which level of each intervention component is required in the condition.  In a full factorial design, one condition may have few or no events related to intervention activities (e.g., a condition in which all components are assigned at an "off" or "absent" level).  Another condition in which multiple components are assigned at an "on" or "present" level will have all of the events associated with each active component. 
+
+3. Define study events
+
+4. Define ideal dates/times for events to take place
+
+5. Designate data collection instruments to be administered at each stud event
 
 1. Go to the Project Setup tab and locate “Main Project Settings”
 2. Enable: “Use longitudinal data collection with defined events”?
 3. Find “Enable optional modules and customizations”
 4. Select “Scheduling Module (longitudinal only)
 
-
 ## Screening and baseline interviews
 ## Locator
 ## Randomization to conditions
 ### Stratification factor
-### Full factorial with two components, each with two levels (i.e., 4 study conditions)
+### Full factorial with two components, each with three levels (i.e., 8 study conditions)
 
 # Fields related to intervention activities
 ## Activity
