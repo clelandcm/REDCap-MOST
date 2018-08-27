@@ -1,19 +1,53 @@
 Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, Calculations, OR Slider Labels",Field Note,Text Validation Type OR Show Slider Number,Text Validation Min,Text Validation Max,Identifier?,Branching Logic (Show field only if...),Required Field?,Custom Alignment,Question Number (surveys only),Matrix Group Name,Matrix Ranking?,Field Annotation
 unique_id,unique_id,,text,unique_id,,,,,,,,y,,,,,
 scr1_timestamp_auto,screening,"<center><h4><strong>INTRODUCTION</strong></h4></center> <br><br>Thank you for agreeing to participate in this interview. We are going to ask you some questions about your health, including HIV status, services use, and how you think about things. <br><br><br>Please answer as honestly as you can. We are not here to judge you and what you tell us is confidential. That means we won't tell anyone anything that you say today. ",text,Auto datetime stamp,,,datetime_mdy,,,,,,,,,,@TODAY @READONLY @NOW @READONLY @HIDDEN
-gender,brief_demographics,,radio,,"1, Female | 2, Male",,,,,,,y,,,,,
-brfss_2009_s12_1,brief_demographics,,radio,What is your age?,"00, Choose to code age in years | 07, Don't know / Not sure | 09, Refused",,,,,,,,,,,,
-brfss_2009_s12_1a,brief_demographics,,text,Code age in years,,,integer,18,120,,"[brfss_2009_s12_1]=""00""",,,,,,
-age_group,brief_demographics,,calc,Age Group,,,,,,,,,,,,,
+scr1_date,screening,,text,Today's Date:,,,date_mdy,,,,,y,,,,,
+scr1_gender,screening,,radio,,"1, Female | 2, Male",,,,,,,y,,,,,
+scr1_dob,screening,,text,What is your date of birth?,,,date_mdy,,,y,,y,,,,,@HIDEBUTTON
+scr1_auto_age,screening,,calc,Current age (automatically calculated),"rounddown(datediff([scr1_dob], [scr1_date], ""y"", ""mdy""), 0, true)",,,,,,,y,,,,,@HIDDEN
+scr1_auto_age_descr,screening,,descriptive,"<center><div class = ""red""> <strong> NEXT QUESTION - FOR INTERVIEWER ONLY</strong><br><br>Based on the Participant's current age: <strong>[scr1_auto_age]</strong></div></center>",,,,,,,,,,,,,
+rand_condition,screening,,radio,"Is the participant:<br><br><div class = ""red"">For Interviewer only</div>","1, Younger than 36 | 2, 36 or Older",,,,,,,y,,,,,
+scr1_rand_descr1,screening,,descriptive,"<center><div class = ""red""><h4><strong>
+
+PARTICIPANT IS 36 OR OLDER: WRONG SELECTION MADE
+
+</strong></h4></div></center>",,,,,,,[scr1_auto_age] >= 36 and [rand_condition] = '1',,,,,,
+scr1_rand_descr2,screening,,descriptive,"<center><div class = ""red""><h4><strong>
+
+PARTICIPANT IS YOUNGER THAN 36: WRONG SELECTION MADE
+
+</strong></h4></div></center>",,,,,,,[scr1_auto_age] < 36 and [rand_condition] = '2',,,,,,
+scr1_livingin,screening,,radio,"Where have you been living during the past month, that is, what borough or other location? <br><br><div class=""red""><b> NOTE TO INTERVIEWER: </b><br>""Larger NYC metropolitan area"" includes locations that border NYC in Nassau County Long Island, and counties in North-East New Jersey on the Hudson River including Middlesex, Union, Essex, Hudson, and Bergen counties </div>","0, Manhattan | 1, The Bronx | 2, Queens | 3, Brooklyn | 4, Staten Island | 5, Larger NYC metropolitan area | 6, Outside NYC metropolitan area | 998, Refuse to Answer",,,,,,,y,,,,,
+scr1_leave,screening,,radio,Do you have any plans to leave the New York City metropolitan area in the next year?,"0, No | 1, Yes |998, Refuse to Answer",,,,,,,y,,,,,
+bl_timestamp_auto,baseline_interview,"Thank you for agreeing to participate in this project.  
+
+
+
+We are going to ask you some questions about how you think about things, how you manage some issues, and about your health habits. What you tell us may help us develop better programs and services for others.
+
+
+
+We will be talking about some serious issues. To help us understand them, please answer as honestly as you can.  We are not here to judge you and what you tell us is confidential.  That means we won't tell anyone anything that you say today.
+
+
+
+Some of the questions may not apply to you, but it will help us if you try to answer them the best way you can. And, you don't have to answer any question that you don't want to.
+
+
+
+First we will get some background information about you.
+
+",text,Auto datetime stamp,,,datetime_mdy,,,,,,,,,,@TODAY @READONLY @NOW @READONLY @HIDDEN
+bl_date,baseline_interview,,text,Interviewer: Enter today's date ,,,date_mdy,,,,,y,,,,,
+bl_month,baseline_interview,,dropdown,What is the current month:,"1, January | 2, Februrary | 3, March | 4, April | 5, May | 6, June | 7, July | 8, August | 9, September | 10, October | 11, November | 12, December",,,,,,,y,,,,,
+bl_dob,baseline_interview,,text,"What is your date of birth?<br><br><div class=""red""><strong>Interviewer</strong><br><br>Explain to participant how to input dates by typing it in, or using the calendar icon to select the date. </div>",,,date_mdy,,,,,y,,,,,@HIDEBUTTON
+bl_birthplace,baseline_interview,,radio,Where were you born?,"0, USA - mainland, Hawaii, Alaska | 1,  Puerto Rico, US Virgin Islands | 2, Other North America | 3, Central America, incl. Mexico | 4, Caribbean | 5, South America | 6, Europe, incl. Eastern Russia | 7, Asia, Australia | 8, Africa | 9, Other | 997, Don't Know | 998, Refuse to Answer | 999, Not Applicable",,,,,,,y,,,,,
+bl_birthplace_other,baseline_interview,,text,If Other please specify:,,,,,,,[bl_birthplace] = '9',y,,,,,
+bl_spiritual,baseline_interview,,radio,How religious or spiritual do you consider yourself to be?,"0, Not at all | 1, A little | 2, Somewhat | 3, Quite a bit | 4, A great deal | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,
+bl_education,baseline_interview,,radio,What is the highest level of education you have completed?,"1, Middle School (Junior High School or less) | 2, Some High School, no diploma | 3, High School graduate/ GED or equivalent | 4, Junior (2-year) College | 5, Technical/ Trade/ Vocational School | 6, Some college (4-year College or University) | 7, College graduate (4-year College or University) | 8, Post-College/ Graduate school | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,
 brfss_2009_s12_2,brief_demographics,,radio,Are you Hispanic or Latino?,"1, Yes | 2, No | 7, Don't know / Not sure | 9, Refused",,,,,,,,,,,,
 brfss_2009_s12_3,brief_demographics,,checkbox,Which one or more of the following would you say is your race? <br><br>(Check all that apply)<br><br><br><div>INTERVIEWER NOTE - Please read:</div><div style='margin-left:40px;'> White<br>Black or African American<br>Asian<br>Native Hawaiian or Other Pacific Islander <br>American Indian or Alaska Native<br></div><br><div>Or</div><div style='margin-left:40px;'>Other [specify]</div><br><div><span style='color:red;'>Do not read:<div style='margin-left:40px;'> No additional choices<br>Don't know/ Not sure<br>Refused</div>,"1, White | 2, Black or African American | 3, Asian | 4, Native Hawaiian or Other Pacific Islander | 5, American Indian or Alaska Native | 6, Other [specify] | 8, No additional choices | 7, Don't know / Not sure | 9, Refused",,,,,,,,,,,,
 brfss_2009_s12_3a,brief_demographics,,text,Other [specify],,,,,,,"[brfss_2009_s12_3(6)]=""1""",,,,,,
-brfss_2009_s12_11,brief_demographics,,radio,About how much do you weigh without shoes?,"0000, Choose to enter weight (pounds/kilograms) | 7777, Don't know / Not sure | 9999, Refused",,,,,,,,,,,,
-brfss_2009_s12_11a,brief_demographics,,text,Weight (pounds/kilograms) ,,,number,,,,"[brfss_2009_s12_11]=""0000""",,,,,,
-brfss_2009_s12_11_b,brief_demographics,,radio,Is unit of measure pounds or kilograms?,"1, pounds | 2, kilograms",,,,,,"[brfss_2009_s12_11]=""0000""",,,,,,
-phq9_date_enrolled,patient_health_questionnaire_9,,text,Date: ,,,date_ymd,,,,,,,,,,
-phq9_first_name,patient_health_questionnaire_9,,text,First Name,,,,,,y,,,,,,,
-phq9_last_name,patient_health_questionnaire_9,,text,Last Name,,,,,,y,,,,,,,
 phq9_1,patient_health_questionnaire_9,Over the <u>last 2 weeks</u> how often have you been bothered by any of the following problems? <i>(Click the circle to indicate your answer)</u>,radio,1. Little interest or pleasure in doing things,"0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
 phq9_2,patient_health_questionnaire_9,,radio,"2. Feeling down, depressed, or hopeless","0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
 phq9_3,patient_health_questionnaire_9,,radio,"3. Trouble falling or staying asleep, or sleeping too much","0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
@@ -23,7 +57,6 @@ phq9_6,patient_health_questionnaire_9,,radio,6. Feeling bad about yourself -- or
 phq9_7,patient_health_questionnaire_9,,radio,"7. Trouble concentrating on things, such as reading the newspaper or watching television","0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
 phq9_8,patient_health_questionnaire_9,,radio,8. Moving or speaking so slowly that other people could have noticed? Or the opposite -- being so fidgety or restless that you have been moving around a lot more than usual,"0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
 phq9_9,patient_health_questionnaire_9,,radio,9. Thoughts that you would be better off dead or of hurting yourself in some way,"0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
-phq9_total_score,patient_health_questionnaire_9,,text,Enter Total Score:,,,,,,,,,,,,,
 phq9_how_difficult,patient_health_questionnaire_9,,radio,"If you checked off <u>any</u> problems, how <u>difficult </u> have these problems made it for you to do your work, take care of things at home, or get along with other people?","1, 1- Not difficult at all | 2, 2- Somewhat difficult | 3, 3- Very difficult | 4, 4- Extremely difficult",,,,,,,,,,,,
 gad_q0,gad7,,descriptive,"<div class = ""yellow""><strong>Over the last 2 weeks, how often have you been bothered by the following problems?</strong></div>",,,,,,,,,,,,,gad7
 gad_q1,gad7,,radio,"Feeling nervous, anxious or on edge.","0, Not at all | 1, Several days | 2, More than half the days | 3, Nearly everyday | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
@@ -35,12 +68,45 @@ gad_q6,gad7,,radio,Being so restless that it is hard to sit still.,"0, Not at al
 gad_q7,gad7,,radio,Becoming easily annoyed or irritable.,"0, Not at all | 1, Several days | 2, More than half the days | 3, Nearly everyday | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
 gad_q8,gad7,,radio,Feeling afraid as if something awful might happen.,"0, Not at all | 1, Several days | 2, More than half the days | 3, Nearly everyday | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
 gad_q9,gad7,,radio,"If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?","0, Not difficult at all|1,Somewhat difficult|2, Very difficult|3, Extremely difficult| 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
-scond,randomization,,dropdown,,"1, tuna | 2, salmon | 3, marlin | 4, bass | 5, trout | 6, shark | 7, carp | 8, halibut",,,,,,,,,,,,
+brief_timestamp_auto,brief_video,,text,Auto datetime stamp: (brief video),,,datetime_mdy,,,,,,,,,,@NOW @READONLY @TODAY @READONLY @HIDDEN
+brief_date,brief_video,,text,Date Session Completed ,,,date_mdy,,,,,y,,,,,
+brief_staff_initials,brief_video,,text,Staff initials,,,alpha_only,,,,,y,,,,,
 brief_like,brief_video,,radio,How much did you like this video?,"1, not at all | 2, a little | 3, very much",,,,,,,,,,,,
 brief_length,brief_video,,radio,What did you think about the length of this video?,"1, too short | 2, too long | 3, just right",,,,,,,,,,,,
+detailed_timestamp_auto,brief_video,,text,Auto datetime stamp: (detailed video),,,datetime_mdy,,,,,,,,,,@NOW @READONLY @TODAY @READONLY @HIDDEN
+detailed_date,brief_video,,text,Date Session Completed ,,,date_mdy,,,,,y,,,,,
+detailed_staff_initials,brief_video,,text,Staff initials,,,alpha_only,,,,,y,,,,,
 detailed_like,detailed_video,,radio,How much did you like this video?,"1, not at all | 2, a little | 3, very much",,,,,,,,,,,,
 detailed_length,detailed_video,,radio,What did you think about the length of this video?,"1, too short | 2, too long | 3, just right",,,,,,,,,,,,
+sg_timestamp_auto,support_groups,,text,Auto datetime stamp: (brief video),,,datetime_mdy,,,,,,,,,,@NOW @READONLY @TODAY @READONLY @HIDDEN
+sg_date,support_groups,,text,Date Session Completed ,,,date_mdy,,,,,y,,,,,
+sg_staff_initials,support_groups,,text,Staff initials,,,alpha_only,,,,,y,,,,,
 support_leader_effective,support_groups,,slider,How effective was the group leader?,not at all | somewhat | very,,number,,,,,,RH,,,,
+text_date,text_messages,,text,Date Text Message Sent,,,date_mdy,,,,,y,,,,,
 text_read,text_messages,,yesno,Did you read the text message?,,,,,,,,,RH,,,,
-cellphone,locator,,text,What is you current cell phone number?,,(XXX)-XXX-XXXX,phone,,,y,,,,,,,
-email,locator,,text,What is your email address?,,,email,,,,,,,,,,
+loc_date,locator,"An important part of the HTH2 project is that we can reach you in the future. If you recruit peers, we need to be able to reach you so you get your compensation.<br>In order to do this, we need as much contact information for you as possible, in case anything changes like your phone number or your living situation. So we are asking for your contact information as well as names, addresses and phone numbers of your friends, counselors, doctors, job, or family members - any people in New York or elsewhere - who you have regular contact with and who could help us reach you if necessary.<br><br>If you don't feel comfortable with us contacting you through a certain person or in a certain way, <b> please don't give us that information </b>.<br><br>Whenever we try to contact you or any of your contacts, we will just say you are a part of a ""community health project"" and won't mention any information about you, what the HTH2 Project is about, or the names of any specific agencies in order to protect your confidentiality. Do you have any questions? Now we'll ask you for your contact information and then information for at least 3 other people who, if we can't get in touch with you directly, may be able to help us reach you.<br><br><div class = ""red""><b>NOTE</b> to Interviewer: Attempt to get <b>three</b> different sources of tracking information </div>",text,"Today's Date:
+
+(date Locator form started)",,,date_mdy,,,,,,,,,,
+loc_date_update,locator,,text,"Date of Locator form update
+
+(Update this date every time Locator form is updated)",,,date_mdy,,,,,,,,,,
+loc_fname,locator,,text,First Name,,,,,,y,,y,,,,,
+loc_lname,locator,,text,Last Name,,,,,,y,,y,,,,,
+loc_dob,locator,,text,Date of Birth,,,date_mdy,,,y,,y,,,,,@HIDEBUTTON
+cellphone,locator,,text,What is you current cell phone number?,,(XXX)-XXX-XXXX,phone,,,y,,y,,,,,
+email,locator,,text,What is your email address?,,,email,,,y,,y,,,,,
+rand_timestamp_auto,randomization_form,,text,Auto datetime stamp: (randomization),,,datetime_mdy,,,,,,,,,,@NOW @READONLY @TODAY @READONLY @HIDDEN
+rand_date,randomization_form,,text,Today's Date,,,date_mdy,,,,,y,,,,,
+rand_scond,randomization_form,,dropdown,Study Condition,"1, tuna | 2, salmon | 3, marlin | 4, bass | 5, trout | 6, shark | 7, carp | 8, halibut",,autocomplete,,,,,y,,,,,
+rand_descr,randomization_form,,descriptive,"<h4><font color = ""red"">DO NOT change the auto-filled response.</font></h4>",,,,,,,,,,,,,
+core_timestamp_auto,core_component_form,,text,Auto datetime stamp: (core session),,,datetime_mdy,,,,,,,,,,@NOW @READONLY @TODAY @READONLY @HIDDEN
+core_date,core_component_form,,text,Date Session Completed ,,,date_mdy,,,,,y,,,,,
+core_staff_initials,core_component_form,,text,Staff initials,,,alpha_only,,,,,y,,,,,
+core_activity1,core_component_form,To what extent was the following activity completed?,radio,Introductions,"1, Not at all | 2, A little | 3, somewhat | 4, A lot | 5, Extensively",,,,,,,y,,,,,
+core_activity1_reason,core_component_form,,notes,Provide reason for the activity not being completed.,,,,,,,[core_activity1] = '1',y,,,,,
+core_activity2,core_component_form,To what extent was the following activity completed?,radio,Orientation to the program,"1, Not at all | 2, A little | 3, somewhat | 4, A lot | 5, Extensively",,,,,,,y,,,,,
+core_activity2_reason,core_component_form,,notes,Provide reason for the activity not being completed.,,,,,,,[core_activity2] = '1',y,,,,,
+core_went_well,core_component_form,Summary:,notes,What went well during the encounter?,,,,,,,,y,,,,,
+core_challenges,core_component_form,,notes,What challenges came up during the encounter?<br>(include issues you would like to cover in supervision):,,,,,,,,y,,,,,
+core_next_steps,core_component_form,,notes,Next Steps:,,,,,,,,y,,,,,
+core_notes,core_component_form,,notes,Other Comments:,,,,,,,,,,,,,
