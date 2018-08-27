@@ -1,0 +1,46 @@
+Variable / Field Name,Form Name,Section Header,Field Type,Field Label,"Choices, Calculations, OR Slider Labels",Field Note,Text Validation Type OR Show Slider Number,Text Validation Min,Text Validation Max,Identifier?,Branching Logic (Show field only if...),Required Field?,Custom Alignment,Question Number (surveys only),Matrix Group Name,Matrix Ranking?,Field Annotation
+unique_id,unique_id,,text,unique_id,,,,,,,,y,,,,,
+scr1_timestamp_auto,screening,"<center><h4><strong>INTRODUCTION</strong></h4></center> <br><br>Thank you for agreeing to participate in this interview. We are going to ask you some questions about your health, including HIV status, services use, and how you think about things. <br><br><br>Please answer as honestly as you can. We are not here to judge you and what you tell us is confidential. That means we won't tell anyone anything that you say today. ",text,Auto datetime stamp,,,datetime_mdy,,,,,,,,,,@TODAY @READONLY @NOW @READONLY @HIDDEN
+gender,brief_demographics,,radio,,"1, Female | 2, Male",,,,,,,y,,,,,
+brfss_2009_s12_1,brief_demographics,,radio,What is your age?,"00, Choose to code age in years | 07, Don't know / Not sure | 09, Refused",,,,,,,,,,,,
+brfss_2009_s12_1a,brief_demographics,,text,Code age in years,,,integer,18,120,,"[brfss_2009_s12_1]=""00""",,,,,,
+age_group,brief_demographics,,calc,Age Group,,,,,,,,,,,,,
+brfss_2009_s12_2,brief_demographics,,radio,Are you Hispanic or Latino?,"1, Yes | 2, No | 7, Don't know / Not sure | 9, Refused",,,,,,,,,,,,
+brfss_2009_s12_3,brief_demographics,,checkbox,Which one or more of the following would you say is your race? <br><br>(Check all that apply)<br><br><br><div>INTERVIEWER NOTE - Please read:</div><div style='margin-left:40px;'> White<br>Black or African American<br>Asian<br>Native Hawaiian or Other Pacific Islander <br>American Indian or Alaska Native<br></div><br><div>Or</div><div style='margin-left:40px;'>Other [specify]</div><br><div><span style='color:red;'>Do not read:<div style='margin-left:40px;'> No additional choices<br>Don't know/ Not sure<br>Refused</div>,"1, White | 2, Black or African American | 3, Asian | 4, Native Hawaiian or Other Pacific Islander | 5, American Indian or Alaska Native | 6, Other [specify] | 8, No additional choices | 7, Don't know / Not sure | 9, Refused",,,,,,,,,,,,
+brfss_2009_s12_3a,brief_demographics,,text,Other [specify],,,,,,,"[brfss_2009_s12_3(6)]=""1""",,,,,,
+brfss_2009_s12_11,brief_demographics,,radio,About how much do you weigh without shoes?,"0000, Choose to enter weight (pounds/kilograms) | 7777, Don't know / Not sure | 9999, Refused",,,,,,,,,,,,
+brfss_2009_s12_11a,brief_demographics,,text,Weight (pounds/kilograms) ,,,number,,,,"[brfss_2009_s12_11]=""0000""",,,,,,
+brfss_2009_s12_11_b,brief_demographics,,radio,Is unit of measure pounds or kilograms?,"1, pounds | 2, kilograms",,,,,,"[brfss_2009_s12_11]=""0000""",,,,,,
+phq9_date_enrolled,patient_health_questionnaire_9,,text,Date: ,,,date_ymd,,,,,,,,,,
+phq9_first_name,patient_health_questionnaire_9,,text,First Name,,,,,,y,,,,,,,
+phq9_last_name,patient_health_questionnaire_9,,text,Last Name,,,,,,y,,,,,,,
+phq9_1,patient_health_questionnaire_9,Over the <u>last 2 weeks</u> how often have you been bothered by any of the following problems? <i>(Click the circle to indicate your answer)</u>,radio,1. Little interest or pleasure in doing things,"0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
+phq9_2,patient_health_questionnaire_9,,radio,"2. Feeling down, depressed, or hopeless","0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
+phq9_3,patient_health_questionnaire_9,,radio,"3. Trouble falling or staying asleep, or sleeping too much","0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
+phq9_4,patient_health_questionnaire_9,,radio,4. Feeling tired or having little energy,"0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
+phq9_5,patient_health_questionnaire_9,,radio,5. Poor appetite or overeating,"0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
+phq9_6,patient_health_questionnaire_9,,radio,6. Feeling bad about yourself -- or that you are a failure or have let yourself or your family down,"0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
+phq9_7,patient_health_questionnaire_9,,radio,"7. Trouble concentrating on things, such as reading the newspaper or watching television","0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
+phq9_8,patient_health_questionnaire_9,,radio,8. Moving or speaking so slowly that other people could have noticed? Or the opposite -- being so fidgety or restless that you have been moving around a lot more than usual,"0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
+phq9_9,patient_health_questionnaire_9,,radio,9. Thoughts that you would be better off dead or of hurting yourself in some way,"0,0- Not at all | 1, 1- Several days | 2, 2- More than half the days | 3, 3- Nearly every day",,,,,,,,,,,,
+phq9_total_score,patient_health_questionnaire_9,,text,Enter Total Score:,,,,,,,,,,,,,
+phq9_how_difficult,patient_health_questionnaire_9,,radio,"If you checked off <u>any</u> problems, how <u>difficult </u> have these problems made it for you to do your work, take care of things at home, or get along with other people?","1, 1- Not difficult at all | 2, 2- Somewhat difficult | 3, 3- Very difficult | 4, 4- Extremely difficult",,,,,,,,,,,,
+gad_q0,gad7,,descriptive,"<div class = ""yellow""><strong>Over the last 2 weeks, how often have you been bothered by the following problems?</strong></div>",,,,,,,,,,,,,gad7
+gad_q1,gad7,,radio,"Feeling nervous, anxious or on edge.","0, Not at all | 1, Several days | 2, More than half the days | 3, Nearly everyday | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
+gad_q2,gad7,,radio,Not being able to stop or control worrying.,"0, Not at all | 1, Several days | 2, More than half the days | 3, Nearly everyday | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
+gad_q3,gad7,,radio,Worrying too much about different things.,"0, Not at all | 1, Several days | 2, More than half the days | 3, Nearly everyday | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
+gad_q4,gad7,,radio,Trouble relaxing.,"0, Not at all | 1, Several days | 2, More than half the days | 3, Nearly everyday | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
+gad_q5,gad7,Now we are going to ask you about your feelings about some things. ,descriptive,"<div class = ""yellow""><strong>Over the last 2 weeks, how often have you been bothered by the following problems?</strong></div>",,,,,,,,,,,,,gad7
+gad_q6,gad7,,radio,Being so restless that it is hard to sit still.,"0, Not at all | 1, Several days | 2, More than half the days | 3, Nearly everyday | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
+gad_q7,gad7,,radio,Becoming easily annoyed or irritable.,"0, Not at all | 1, Several days | 2, More than half the days | 3, Nearly everyday | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
+gad_q8,gad7,,radio,Feeling afraid as if something awful might happen.,"0, Not at all | 1, Several days | 2, More than half the days | 3, Nearly everyday | 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
+gad_q9,gad7,,radio,"If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?","0, Not difficult at all|1,Somewhat difficult|2, Very difficult|3, Extremely difficult| 997, Don't Know | 998, Refuse to Answer",,,,,,,y,,,,,gad7
+scond,randomization,,dropdown,,"1, tuna | 2, salmon | 3, marlin | 4, bass | 5, trout | 6, shark | 7, carp | 8, halibut",,,,,,,,,,,,
+brief_like,brief_video,,radio,How much did you like this video?,"1, not at all | 2, a little | 3, very much",,,,,,,,,,,,
+brief_length,brief_video,,radio,What did you think about the length of this video?,"1, too short | 2, too long | 3, just right",,,,,,,,,,,,
+detailed_like,detailed_video,,radio,How much did you like this video?,"1, not at all | 2, a little | 3, very much",,,,,,,,,,,,
+detailed_length,detailed_video,,radio,What did you think about the length of this video?,"1, too short | 2, too long | 3, just right",,,,,,,,,,,,
+support_leader_effective,support_groups,,slider,How effective was the group leader?,not at all | somewhat | very,,number,,,,,,RH,,,,
+text_read,text_messages,,yesno,Did you read the text message?,,,,,,,,,RH,,,,
+cellphone,locator,,text,What is you current cell phone number?,,(XXX)-XXX-XXXX,phone,,,y,,,,,,,
+email,locator,,text,What is your email address?,,,email,,,,,,,,,,

@@ -57,17 +57,18 @@ The unique identifier will be used to recognize and individual participant over 
 
 ## Assessments
 
-MOST studies will typically have at least three kinds of assessments of individual participants:
+MOST studies will typically have at least four kinds of assessments of individual participants:
 
 1. screening for eligibility
-2. baseline
-3. follow-up
+2. locator information to facilitate contact with individuals over time
+3. baseline interview
+4. one or more follow-up interviews
 
-It is important to keep in mind that some individuals who are screened will not be eligible, and therefore will not continue into the main study. There also may be a lag of uncertain length between the start of screening for a potential participant and enrollment of that participant if eligible.  For REDCap setup, the implication is that screening should be a separate piece of the study.  This allows the timing of follow-up interviews and intervention activities to depend on the date of enrollment rather than the date on which screening started.
+It is important to keep in mind that some individuals who are screened will not be eligible, and therefore will not continue into the main study. There also may be a lag of uncertain length between the start of screening for a potential participant and enrollment of that participant if eligible.  For REDCap setup, the implication is that screening should be a separate piece of the study.  This allows the timing of follow-up interviews and intervention activities to depend on the date of enrollment/baseline rather than the date on which screening started.
 
 ## Locator information with ongoing updates
 
-A number of REDCap fields will be devoted to information to facilitate contacting individual participants for study activities. These may include:
+A number of REDCap fields will be devoted to information to facilitate contacting individual participants over time for study activities. These may include:
 
 1. cell phone number
 2. email address
@@ -80,7 +81,7 @@ Locator information can be updated when an individual participant is present for
 
 ## Intervention component activities
 
-Think of fields needed within REDCap to document aspects of intervention component delivery. Components may be sessions with individual participants, group activities, or technology (e.g., text messages). At a minimum, the date, staff, duration, and completion status of an activity should be captured. Other fields related to intervention activities may include ratings of fidelity, measures of engagement/satisfaction, and descriptions of content discussed. 
+Think of fields needed within REDCap to document aspects of intervention component delivery. Components may be sessions with individual participants, group activities, or technology (e.g., text messages). At a minimum, the date, staff, duration, and completion status of an activity should be captured. Other fields related to intervention activities may include ratings of fidelity, measures of engagement/satisfaction, and descriptions of content discussed.   
 
 ## Condition-specific activities and data collection
 
@@ -88,40 +89,39 @@ The typical MOST study will have at least four different conditions and may have
 
 ## Need to monitor and drive completion of common and condition-specific study activities
 
-REDCap divides the whole study into **arms**, which are groups of events which may be common to all participants or specific to study conditions.  
+REDCap divides the whole study into **arms**, which are groups of events which may be common to all participants or specific to a subset of participants.  
 
-To be more concrete, a participant in a condition which is assigned to the active level of a component gets events specific to that component (e.g., an intervention session).  Other events, such as a baseline interview, will be common to many more participants.  Some events may be univeral, such as a screening interview to determine eligibility for the study.  Event scheduling within the REDCap system is on an as needed basis.   
+To be more concrete, a participant in a condition which is assigned to the active level of a component gets events specific to that component (e.g., an intervention session).  Other events, such as a baseline interview, will be common to many more participants.  Some events may be univeral, such as a screening interview to determine eligibility for the study.  Event scheduling and data collection within the REDCap system is on an as needed basis.   
 
 ## Keeping track of intervention components and study conditions
 
-As you prepare to set up REDCap to manage a study, it can be useful to create a table showing the study conditions and which levels of each component they receive. Giving the study conditions names, rather than referring to them only with numbers or letters, can make it easier for staff to think about and discuss to activities needed for specific conditions. Consider a 2 x 2 x 2 full factorial design. A table to guide REDCap setup may look something like this:
+As you prepare to set up REDCap to manage a study, it can be useful to create a table showing the study conditions and which level of each component they receive. Giving the study conditions names, rather than referring to them only with numbers or letters, can make it easier for staff to think about and discuss to activities needed for specific conditions. Consider a 2 x 2 x 2 full factorial design. A table to guide REDCap setup may look something like this:
 
 | Condition | Name    | Video       | Text Messages | Support Groups |
 |:---------:|:-------:|:-----------:|:-------------:|:--------------:|
-| 1         | tuna    | 20min       | Yes           |  Yes           |
-| 2         | salmon  | 20min       | Yes           |  No            |
-| 3         | marlin  | 20min       | No            |  Yes           |
-| 4         | bass    | 20min       | No            |  No            |  
-| 5         | trout   | 3min        | Yes           |  Yes           |  
-| 6         | shark   | 3min        | Yes           |  No            |  
-| 7         | carp    | 3min        | No            |  Yes           |  
-| 8         | halibut | 3min        | No            |  No            |  
+| 1         | tuna    | 20 minutes  | Yes           |  Yes           |
+| 2         | salmon  | 20 minutes  | Yes           |  No            |
+| 3         | marlin  | 20 minutes  | No            |  Yes           |
+| 4         | bass    | 20 minutes  | No            |  No            |  
+| 5         | trout   | 3 minutes   | Yes           |  Yes           |  
+| 6         | shark   | 3 minutes   | Yes           |  No            |  
+| 7         | carp    | 3 minutes   | No            |  Yes           |  
+| 8         | halibut | 3 minutes   | No            |  No            |  
 
-In this example, study conditions are given fish names. With more than 16 conditions, names may not be helpful/feasible.  
+In this example, study conditions are given fish names. With more than 16 conditions, names may not be helpful/feasible.  Each study condition will have a unique set of planned activities, which REDCap calls **events**.  Part of setting up a REDCap project for the study will involve mapping out all of the events each condition will experience, and at each of these events, one or more instruments may be designated for data collection.  
 
-# REDCap Overview
+# Overview of REDCap 
 
 Before you begin the setup of a MOST study, familiarize yourself with the REDCap system. Good starting points are the [brief](https://flash.its.vanderbilt.edu/html5/redcap/streams/_definst_/redcap_overview_brief02.mp4) and [detailed](https://flash.its.vanderbilt.edu/html5/redcap/streams/_definst_/redcap_overview03.mp4) overview videos.
 
 ![**Figure 1**. REDCap Overview Videos](Screenshot 2018-08-20 10.12.38.png)
-
 ## Types of REDCap projects
 
   REDCap offers a variety of project types.
   
 ![**Figure 2**. Types of REDCap Projects](Screenshot 2018-08-20 09.02.44.png)
 
-If your interest is using REDCap to manage the complex set of activities in a typical MOST study (multiple conditions, condition-specific and common activities), you almost certainly want the **Longitudinal+Scheduling** project type.
+If your interest is using REDCap to manage the complex set of activities in a typical MOST study (multiple conditions, condition-specific and common activities), you almost certainly want the **Longitudinal+Scheduling** project type. 
 
 ## Ways to build a REDCap project
 
@@ -168,13 +168,73 @@ Here is a brief description of the content specified in each of the **18** colum
   
 Both the online designer and the data dictionary allow customization of formatting, as both understand HTML code.  The example MOST project illustrates some of these possibilities below.
 
+## Interview Items and Other Data Collection Fields
+### Item types  
+
+REDCap offers a wide variety of survey and interview item types.
+
+* Text box (short text, number, date/time, etc)
+* Notes box (paragraph text)
+* Calculated field (derived from other fields)
+* Multiple choice (drop-down list OR radio buttons)
+* Checkboxes (check all that apply)
+* Yes/No
+* True/False
+* Signature (with mouse, finger, or other device)
+* Slider/Visual Analog
+* File upload
+* Descriptive text
+
+![**Figure 6**. Field Types](Screenshot 2018-08-27 10.38.45.png)
+
+### Branching logic
+
+Branching logic is the way REDCap refers to interview skip patterns.  These are employed when fields need to be hidden during certain circumstances.  For instance, you may want to hide the question “How many hours per week do you watch TV?” until a “Yes” answer is checked for the previous question, “Do you watch TV?”.  
+
+### Piping
+
+Piping refers to inserting the response from an earlier data collection element into the content of a later data collection element.  Collected data can be piped not just to the field label of a subsequent field, but to any of the following places:
+
+* Field Label
+* Field Note
+* Section Header
+* Matrix field column headers
+* Option labels for multiple choice fields (radio, drop-down, checkbox)
+* Slider field labels (i.e. text displayed above slider bar)
+* Custom record locking text (if defined, displayed at bottom of form)
+* Survey Instructions
+* Survey Completion Text
+* Survey invitation emails (sent via Participant List or Automated Invitations) - includes both subject and message
+* Custom text displayed at top of Survey Queue
+* Inside the URL for a survey's 'Redirect to a URL' setting
+
+All you need to do to pipe a data value into any of these valid places is insert into your text the variable name inside square brackets.
+
+### Calculated fields
+
+Calculations should be considered a tool not data.  Calculations should be reapplied during data analysis.  Do not reference calculated fields within calculated fields.  When multiple calculations are performed on the same data entry form, the order of execution is determined by the alphabetical order of the associated field names.
+
+**Problem**:  Here, Calculation 2 will occur before Calculation 1!   
+Calculation 1 [weight_met]=[weight]*.45359237    
+Calculation 2 [BMI]=[weight_met]/([height]^2)  
+
+To avoid this problem, calculate BMI in one step.
+
+### Data validation  
+
+Data validation provides ways to ensure collected data is entered in an expected format or falls within an expected range.  For example, a field collecting participant age in years could specify that only whole numbers from 0 to 150 are allowed.  When a response outside of the allowed range is given, REDCap will prompt the survey respondent or staff entering data to revise the entry. 
+
+## Forms vs. Surveys for Data Collection
+
+Two ways of collecting/entering data in REDCap are Forms and Surveys.  Forms are for data entered by project staff, not directly by participants.  Forms might be used to enter the results of biological testing or responses to items in a staff-administered personal interview.  Surveys are for data entered directly by participants.  Surveys may take place at a study field site, as an audio computer-assisted self-interview, or participants could be invited by email (or in other ways) to complete a survey in a location of their choice and with some flexibility around exactly when it happens (e.g., a participant could take a survey by following a link on their home computer at 9:45pm on a Sunday).
+
 ## Events
 
 The entry point for setting up events within REDCap is the **Project Setup** tab.  This is where one can define study events and designate instruments used for each event.
   
 ![**Figure 6**. Defining Events](Screenshot 2018-08-20 11.47.21.png)
   
-Each **arm** in the project is a collection of events in a sequence.  For study conditions which receive multiple components, consider the order in which those components will be delivered to participants, and whether temporal overlap among components is permissible or not.  
+Each **arm** in the project is a collection of events in a sequence.  For study conditions which receive multiple components, REDCap setup is an opportunity to consider the order in which those components will be delivered to participants, and whether temporal overlap among components is permissible or not.  
 
 ### Record-specific events
 ### Days-offset
@@ -196,35 +256,65 @@ Each **arm** in the project is a collection of events in a sequence.  For study 
 ### The ideal time for an event can be changed to a time more convenient for the project and participant
 ### Calendar can be used to see what events are scheduled and to enter a data collection form associated with the scheduled event (e.g., if the scheduled event is a baseline interview, following the calendar link will open the baseline interview data collection forms).   
 
-## Forms vs. Surveys for Data Collection
+## Randomization Module
+```{r}
+library(tidyverse)
+DF <- expand.grid(Person = 1:800, gender = 1:2)
+DF <- DF %>% mutate(Block = cut(Person, 100))
+set.seed(732212)
+DF <- DF %>% group_by(gender, Block) %>% mutate(scond = sample(1:8)) %>% ungroup()
+write.table(DF %>% select(scond, gender), file = "atab.csv", row.names = FALSE, sep = ",")
+```
 
-Two ways of collecting/entering data in REDCap are Forms and Surveys.  Forms are for data entered by project staff, not directly by participants.  Forms might be used to enter the results of biological testing or responses to items administered in a personal interview.  Surveys are for data entered directly by participants.  Surveys may take place at a study field site, as an audio computer-assisted self-interview, or participants could be invited by email (or in other ways) to complete a survey in a location of their choice and with some flexibility around exactly when it happens (e.g., a participant could take a survey by following a link on their home computer at 9:45pm on a Sunday).
+The randomization module sets up REDCap to randomly assign participants to specific study groups.  
+Setup includes the following steps:  
+1. Define your randomization model  
+2. Download template allocation tables (as Excel/CSV files)  
+3. Upload your allocation table (CSV file)  
 
-## Interview Items and Other Data Collection Fields
-### Item types
-### Branching (think skip patterns)
-### Piping (putting the response from an earlier data collection element into the content of a later data collection element)
-### Calculated fields
-### Data validation (ensuring a date is in a specific format; ensuring a recorded value is an integer within a specified range)
+Randomization can be stratified by one or more variables collected before the randomization step.  User rights functionality can control which project staff are allowed to randomize.  After the value of the random group is assigned, the random group field becomes read-only and the value can not be changed (by design!).
 
 ## Reports
-### Lists of collected fields for all or specific participants
-### Has limitations
+
+Reports can show data fields to understand collected data and facilitate project management.  
+There are four steps to building a report:  
+1. Select users who can access the report  
+2. Select data fields to include in the report  
+3. Select cases to include using logic applied to data fields (e.g., only show female participants)  
+4. Select data fields used to order the results (e.g., sort report by age)  
+
+## Record Status Dashboard
+
+The Record Status Dashboard allows project staff to see which data entry forms have been completed for different individual participants.
+
 
 ## Data Export
+
 ### Pulling REDCap data by API
+
+REDCap project data can be exported using an "Application Programming Interface" (API), which is just a way to request the export within a program rather than manually pointing and clicking.  Thus, API makes the process of regularly exporting data for summaries and project management smoother and more efficient. 
+
 ### Data from smaller projects can be exported manually within REDCap too
 
 REDCap can export to the following formats: comma-delimited; SPSS; SAS; R; Stata; and XML.  The export interface can be accessed from the Project Home tab of your REDCap project.
 
-![**Figure 1**. Manual Data Export within REDCap](Screenshot 2018-08-20 11.34.24.png)
+![**Figure 7**. Manual Data Export within REDCap](Screenshot 2018-08-20 11.34.24.png)
   
 ## Things more easily done outside of REDCap
 
 It is very likely you will want and need to do things with the collected data that are impossible or difficult to do within the REDCap system. A fairly efficient approach is to regularly export data from REDCap, and then generate the summaries and files needed to facilitate project management. The ability to use an application programming interface (API) to pull data from REDCap in a program greatly improves the efficiency of this workflow. I have used a combination of tools including various [R](https://www.r-project.org) packages and [GitHub](https://github.com/) to support the Heart-to-Heart 2 MOST study. The [redcapAPI R package](https://cran.r-project.org/web/packages/redcapAPI/index.html) uses the REDCap API to pull current project data, then there are many data management, summarizing, and list making steps in [R](https://www.r-project.org), and web pages generated in [R](https://www.r-project.org) are hosted on [GitHub](https://github.com/). GitHub and similar tools have options for both public and private repositories.  In addition to the web pages, it can be useful to generate MS-Excel files which list individual participants and highlight completed and needed study activities.  The [openxlsx R package](https://cran.r-project.org/web/packages/openxlsx/index.html) can be used to write MS-Excel files from R. 
 
 ### Review intervention activity gaps
+
+Generating a simple list of participants with intervention activity due and completion dates can be useful for managing and driving completion of intervention activities.
+
+![**Figure 8**. MS-Excel Intervention Activity Tracking List](Screenshot 2018-08-27 10.01.32.png)
+
 ### Review follow-up interviewing gaps
+
+Generating a simple list of participants with interview target, earliest, and due dates, as well as days remaining and interview completion can be useful for managing and driving completion of interviews.
+
+![**Figure 9**. MS-Excel Interview Tracking List](Screenshot 2018-08-27 09.52.52.png)
 
 ## REDCap Development and Production Modes  
 REDCap has a **development** and a **production** mode. The development mode allows one to incrementally build and test project components.  The production mode is meant for real data collection and project management.  It is possible to make some changes after moving the project from the development to the production mode, but once in production changes should be made with extreme care.  
@@ -260,7 +350,7 @@ The example illustrates the steps to set up a REDCap project for 2 x 2 x 2 full 
 
 1. screening for eligibility
 2. assessments common to all participants, including locator, a baseline interview, randomization, and a follow-up interview 
-3. condition-specific events which utilize schedules tailored to individual study conditions and record information related to the intervention activities in each study condition
+3. condition-specific events which utilize schedules tailored to individual study conditions and collect data related to the intervention activities in each study condition
 
 Following the table above
 
@@ -315,11 +405,11 @@ Each randomly assigned study condition will have a different mix of events, depe
 ### Stratification factor
 ### Full factorial with two components, each with three levels (i.e., 8 study conditions)
 
-# Fields related to intervention activities
-### Activity
-### Date
-### Duration
-### Staff
+## Fields related to intervention activities
+* Activity
+* Date
+* Duration
+* Staff
 
 ## First follow-up interview
 ## Second and final follow-up interview
