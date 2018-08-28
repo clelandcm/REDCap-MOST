@@ -232,9 +232,9 @@ Two ways of collecting/entering data in REDCap are Forms and Surveys.  Forms are
 
 The entry point for setting up events within REDCap is the **Project Setup** tab.  This is where one can define study events and designate instruments used for each event.
   
-![**Figure 6**. Defining Events](Screenshot 2018-08-20 11.47.21.png)
+![**Figure 6**. Defining Events](Screenshot 2018-08-28 12.31.49.png)
   
-Each **arm** in the project is a collection of events in a sequence.  For study conditions which receive multiple components, REDCap setup is an opportunity to consider the order in which those components will be delivered to participants, and whether temporal overlap among components is permissible or not.  
+Each **arm** in the project is a collection of events in a sequence.  For study conditions which receive multiple components, REDCap setup is an opportunity to consider the order in which those components will be delivered to participants, and whether temporal overlap among components is permissible or not.  REDCap setup is a good time to consider how intervention component activities and assessment activities are temporally organized.     
 
 ### Record-specific events
 ### Days-offset
@@ -256,6 +256,27 @@ Each **arm** in the project is a collection of events in a sequence.  For study 
 ### The ideal time for an event can be changed to a time more convenient for the project and participant
 ### Calendar can be used to see what events are scheduled and to enter a data collection form associated with the scheduled event (e.g., if the scheduled event is a baseline interview, following the calendar link will open the baseline interview data collection forms).   
 
+## Repeating Events and Instruments
+
+>REDCap has the ability to repeat a data collection instrument or an entire event of instruments an unlimited number of times without having to specify the amount needed. This is sometimes called one-to-many data collection, in which a project can have one or more repeating parts. For example, if each record in a hypothetical project represents a person, then one might have a repeating instrument for medications, one for family members, one or adverse events, and one for collecting data over multiple visits (or weekly surveys), so that each repeating element is connected to the overall record but can repeat independently of the other instruments. So if using repeating instruments or repeating events, each record in the project can have a different number of repeated instances of any given instrument or event. One record may have five medications, but another may have two or none, for example. Such flexibility makes this feature very powerful, and setting up repeating instruments and/or repeating events in a project is very quick and easy. The repeating instruments/events feature can be enabled and set up by clicking the Enable button in the Optional Modules section on the Project Setup page.
+
+### Repeating Instruments (for classic and longitudinal projects)
+
+>Classic projects (i.e., in which the longitudinal module is not enabled) can utilize repeating instruments as a very simple way of doing longitudinal data collection. When traditionally using the longitudinal module in a project, one downside is that one must specify all the events (i.e., the repetitions of instruments) ahead of time, making sure to build out the maximum number of events that one might need, even though all of them likely won't be used by all records. However, with the repeating instruments functionality, one does not need to specify how many repetitions will needed ahead of time; one can simply repeat an instrument an unlimited amount of times. It is important to note that multiple instruments in a project can be enabled as repeating instruments (even all of them, if one wishes). Projects utilizing the longitudinal module can have repeating instruments as well, in which one or more instruments on any defined event can be set to repeat within that event. The repeating instruments functionality behaves very much the same way in both classic and longitudinal projects.
+
+### Repeating Events (for longitudinal projects only)
+
+>If a project has the longitudinal module enabled, it can utilize the repeating events feature, which works somewhat differently than the repeating instruments feature. While the repeating instruments feature allows one to repeat a given instrument as a single unit, the repeating events feature allows one to repeat an entire event of instruments together in unison. This might be useful if one has several instruments whose data correlates together, such as completing multiple surveys back to back for a specific time-point or visit, for example. Previously, one may have had to create X number of identical events to capture repeating data for the instruments on those events (e.g., Week 1, Week 2, ...), but the repeating events feature makes this much simpler by allowing one to create only one single event that can be repeated in unlimited fashion.
+
+### Enabling Surveys for Repeating Instruments
+
+>If one wishes to allow survey respondents to enter their responses in a repeating fashion in survey mode alone, one must enable an optional setting near the bottom of the Survey Settings page (in the survey termination options section) *after* an instrument has been set as a repeating instrument. So it is one additional step to do after enabling the instrument itself as a repeating instrument. When the repeat survey setting is enabled, it will display a button at the end of the survey so that the respondent can choose to enter another response for the survey, thus essentially allowing them to take the survey multiple times in a row. In this way, they will be able to enter as many responses for that same survey as they need. For example, if a REDCap project is aimed at mothers, and the repeating survey is for collecting data about each of the mother's children, the mother could complete the survey once for each child, thus allowing mothers with one child or six children to easily enter their data in a quick back-to-back fashion by repeating the survey. 
+
+### Reports and Data Exports with Repeating Instruments and Events
+
+>If one creates a report that contains data from a repeating instrument or repeating event, a field named 'redcap_repeat_instance' will be included that represents the instance number, which is an auto-numbered value (starting with '1') that gets incremented each time the instrument/event is repeated. And if the report contains data specifically from a repeating instrument (as opposed to a repeating event), then a field named 'redcap_repeat_instrument' will additionally be included that represents the instrument name that denotes to which instrument the row of data belongs. These two fields will only be included automatically in the report or data export if data originates from a repeating instrument or event. Note: Each repeated instance of an instrument or event will be displayed as a new row in the report or export file. This means that if a medications survey is repeated three times for one record, for example, it will be displayed as three rows in the report.
+
+
 ## Randomization Module
 ```{r}
 library(tidyverse)
@@ -274,6 +295,10 @@ Setup includes the following steps:
 
 Randomization can be stratified by one or more variables collected before the randomization step.  User rights functionality can control which project staff are allowed to randomize.  After the value of the random group is assigned, the random group field becomes read-only and the value can not be changed (by design!).
 
+The table of allocations used by REDCap is generated outside of REDCap and saved in comma-delimited format.  The comma-delimited allocation table is uploaded to REDCap as the third and final step in setting up the randomization module.  In the example shown in the figure below, participants are assigned to one of eight study conditions and random assignment is stratified by gender.
+
+![**Figure 7**. Table of Random Allocations for Upload to REDCap](Screenshot 2018-08-28 12.18.30.png)
+
 ## Reports
 
 Reports can show data fields to understand collected data and facilitate project management.  
@@ -283,10 +308,13 @@ There are four steps to building a report:
 3. Select cases to include using logic applied to data fields (e.g., only show female participants)  
 4. Select data fields used to order the results (e.g., sort report by age)  
 
+![**Figure 8**. Reports Example](Screenshot 2018-08-28 12.11.34.png)
+
 ## Record Status Dashboard
 
 The Record Status Dashboard allows project staff to see which data entry forms have been completed for different individual participants.
 
+![**Figure 9**. Record Status Dashboard](Screenshot 2018-08-28 12.15.56.png)
 
 ## Data Export
 
@@ -318,26 +346,6 @@ Generating a simple list of participants with interview target, earliest, and du
 
 ## REDCap Development and Production Modes  
 REDCap has a **development** and a **production** mode. The development mode allows one to incrementally build and test project components.  The production mode is meant for real data collection and project management.  It is possible to make some changes after moving the project from the development to the production mode, but once in production changes should be made with extreme care.  
-
-## Repeating Events and Instruments
-
->REDCap has the ability to repeat a data collection instrument or an entire event of instruments an unlimited number of times without having to specify the amount needed. This is sometimes called one-to-many data collection, in which a project can have one or more repeating parts. For example, if each record in a hypothetical project represents a person, then one might have a repeating instrument for medications, one for family members, one or adverse events, and one for collecting data over multiple visits (or weekly surveys), so that each repeating element is connected to the overall record but can repeat independently of the other instruments. So if using repeating instruments or repeating events, each record in the project can have a different number of repeated instances of any given instrument or event. One record may have five medications, but another may have two or none, for example. Such flexibility makes this feature very powerful, and setting up repeating instruments and/or repeating events in a project is very quick and easy. The repeating instruments/events feature can be enabled and set up by clicking the Enable button in the Optional Modules section on the Project Setup page.
-
-### Repeating Instruments (for classic and longitudinal projects)
-
->Classic projects (i.e., in which the longitudinal module is not enabled) can utilize repeating instruments as a very simple way of doing longitudinal data collection. When traditionally using the longitudinal module in a project, one downside is that one must specify all the events (i.e., the repetitions of instruments) ahead of time, making sure to build out the maximum number of events that one might need, even though all of them likely won't be used by all records. However, with the repeating instruments functionality, one does not need to specify how many repetitions will needed ahead of time; one can simply repeat an instrument an unlimited amount of times. It is important to note that multiple instruments in a project can be enabled as repeating instruments (even all of them, if one wishes). Projects utilizing the longitudinal module can have repeating instruments as well, in which one or more instruments on any defined event can be set to repeat within that event. The repeating instruments functionality behaves very much the same way in both classic and longitudinal projects.
-
-### Repeating Events (for longitudinal projects only)
-
->If a project has the longitudinal module enabled, it can utilize the repeating events feature, which works somewhat differently than the repeating instruments feature. While the repeating instruments feature allows one to repeat a given instrument as a single unit, the repeating events feature allows one to repeat an entire event of instruments together in unison. This might be useful if one has several instruments whose data correlates together, such as completing multiple surveys back to back for a specific time-point or visit, for example. Previously, one may have had to create X number of identical events to capture repeating data for the instruments on those events (e.g., Week 1, Week 2, ...), but the repeating events feature makes this much simpler by allowing one to create only one single event that can be repeated in unlimited fashion.
-
-### Enabling Surveys for Repeating Instruments
-
->If one wishes to allow survey respondents to enter their responses in a repeating fashion in survey mode alone, one must enable an optional setting near the bottom of the Survey Settings page (in the survey termination options section) *after* an instrument has been set as a repeating instrument. So it is one additional step to do after enabling the instrument itself as a repeating instrument. When the repeat survey setting is enabled, it will display a button at the end of the survey so that the respondent can choose to enter another response for the survey, thus essentially allowing them to take the survey multiple times in a row. In this way, they will be able to enter as many responses for that same survey as they need. For example, if a REDCap project is aimed at mothers, and the repeating survey is for collecting data about each of the mother's children, the mother could complete the survey once for each child, thus allowing mothers with one child or six children to easily enter their data in a quick back-to-back fashion by repeating the survey. 
-
-### Reports and Data Exports with Repeating Instruments and Events
-
->If one creates a report that contains data from a repeating instrument or repeating event, a field named 'redcap_repeat_instance' will be included that represents the instance number, which is an auto-numbered value (starting with '1') that gets incremented each time the instrument/event is repeated. And if the report contains data specifically from a repeating instrument (as opposed to a repeating event), then a field named 'redcap_repeat_instrument' will additionally be included that represents the instrument name that denotes to which instrument the row of data belongs. These two fields will only be included automatically in the report or data export if data originates from a repeating instrument or event. Note: Each repeated instance of an instrument or event will be displayed as a new row in the report or export file. This means that if a medications survey is repeated three times for one record, for example, it will be displayed as three rows in the report.
 
 ## REDCap is actively developed
 Researchers using REDCap to manage MOST and other types of studies need to be aware of new features and system changes which may impact aspects of your project.  These changes are generally enhancements (new features) which don't have to be adopted in the middle of a project.  New REDCap features may require changes to this manual over time.
