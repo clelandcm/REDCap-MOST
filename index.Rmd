@@ -129,7 +129,7 @@ In addition to the various **whole project settings** within REDCap, there are t
 
 ### Online Designer
   
-The [online designer](blob:https://redcap.vanderbilt.edu/3225ff5c-bc41-47d4-b42b-c2ee71ef98d8) is an intuitive, point-and-click interface which allows users to build data collection fields.  Online designer also allows users to select instruments from the REDCap Shared Library, a repository of instruments which can be selected and inserted into your own project.  If an instrument the project needs exists within the library, this can save time and reduce errors.
+The [online designer](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=online_designer01.mp4) is an intuitive, point-and-click interface which allows users to build data collection fields.  Online designer also allows users to select instruments from the REDCap Shared Library, a repository of instruments which can be selected and inserted into your own project.  If an instrument the project needs exists within the library, this can save time and reduce errors.
   
 ![**Figure 3**. Online Designer](Screenshot 2018-08-20 11.24.28.png)
   
@@ -139,7 +139,7 @@ This is what the interface to add a new field within online designer looks like:
 
 ### Data Dictionary
   
-The [data dictionary](blob:https://redcap.vanderbilt.edu/e5d81f52-274c-4713-ad71-e5f6aaec1e3f) is a comma-delimited file with a very specific structure that can be used to specify fields in REDCap. An advantage of working directly in the data dictionary is that similar items can be setup more quickly by copying and pasting aspects of fields that are shared across the items.  Many of the cells in the data dictionary may be blank/unused.
+The [data dictionary](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=redcap_data_dictionary02.mp4) is a comma-delimited file with a very specific structure that can be used to specify fields in REDCap. An advantage of working directly in the data dictionary is that similar items can be setup more quickly by copying and pasting aspects of fields that are shared across the items.  Many of the cells in the data dictionary may be blank/unused.
   
 ![**Figure 5**. Data Dictionary](Screenshot 2018-08-20 11.21.04.png)
   
@@ -239,11 +239,11 @@ Each **arm** in the project is a collection of events in a sequence.  In a MOST 
 Think about the timeline of study events for an invidual study participant.  All potential participants start with screening events used to determine eligibility.  This is a one of the events which will be common to all participants.  Other events common to all participants may be: 1) a baseline interview; 2) randomization to a condition; and 3) one or more follow-up interviews.  Based on the results of randomization, condition-specific events will come into play.  The typical MOST study will need at least one arm for the common events occuring prior to randomization as well as arms for each unique study condition.  For example, a 2 * 2 * 2 full factorial design with 8 unique conditions would have at least nine arms in REDCap.
 
 ### Days-offset
-Days-offset is part of defining events for an arm.  It specifies the “ideal” time for an activity as well as a range during which the activity can be completed.  Implicitly, days-offset also specifies the order in which events for an arm will take place.  [Defining Longitudinal Events (5 min)](blob:https://redcap.vanderbilt.edu/798d480c-4eb5-4c1b-a2b0-d5a6641fc06d)
+Days-offset is part of defining events for an arm.  It specifies the “ideal” time for an activity as well as a range during which the activity can be completed.  Implicitly, days-offset also specifies the order in which events for an arm will take place.  [Defining Longitudinal Events (5 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=define_events02.mp4)
 
 
 ### Designating Instruments for Events
-Each event can be connected with one or more instruments to be completed during the event.  [Designating Instruments for Events (3 min)](blob:https://redcap.vanderbilt.edu/22234cea-4658-4bb6-879b-5c644a0536fb)
+Each event can be connected with one or more instruments to be completed during the event.  [Designating Instruments for Events (3 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=designate_instruments02.mp4)
 
 ### Events and instruments can be repeated in a longitudinal project 
 
