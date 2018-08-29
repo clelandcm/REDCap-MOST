@@ -136,7 +136,7 @@ The [online designer](blob:https://redcap.vanderbilt.edu/3225ff5c-bc41-47d4-b42b
 This is what the interface to add a new field within online designer looks like:
   
 ![**Figure 4**. Add Fields with Online Designer](Screenshot 2018-08-20 11.26.30.png)
-  
+
 ### Data Dictionary
   
 The [data dictionary](blob:https://redcap.vanderbilt.edu/e5d81f52-274c-4713-ad71-e5f6aaec1e3f) is a comma-delimited file with a very specific structure that can be used to specify fields in REDCap. An advantage of working directly in the data dictionary is that similar items can be setup more quickly by copying and pasting aspects of fields that are shared across the items.  Many of the cells in the data dictionary may be blank/unused.
@@ -228,33 +228,33 @@ Data validation provides ways to ensure collected data is entered in an expected
 
 Two ways of collecting/entering data in REDCap are Forms and Surveys.  Forms are for data entered by project staff, not directly by participants.  Forms might be used to enter the results of biological testing or responses to items in a staff-administered personal interview.  Surveys are for data entered directly by participants.  Surveys may take place at a study field site, as an audio computer-assisted self-interview, or participants could be invited by email (or in other ways) to complete a survey in a location of their choice and with some flexibility around exactly when it happens (e.g., a participant could take a survey by following a link on their home computer at 9:45pm on a Sunday).
 
-## Events
+## Events and Arms
 
 The entry point for setting up events within REDCap is the **Project Setup** tab.  This is where one can define study events and designate instruments used for each event.
   
 ![**Figure 6**. Defining Events](Screenshot 2018-08-28 12.31.49.png)
   
-Each **arm** in the project is a collection of events in a sequence.  For study conditions which receive multiple components, REDCap setup is an opportunity to consider the order in which those components will be delivered to participants, and whether temporal overlap among components is permissible or not.  REDCap setup is a good time to consider how intervention component activities and assessment activities are temporally organized.     
+Each **arm** in the project is a collection of events in a sequence.  In a MOST study, each condition may have a unique sequence of study events, and arms in REDCap are a way to specify different events for different participants.  For study conditions which receive multiple components, REDCap setup is an opportunity to consider the order in which those components will be delivered to participants, and whether temporal overlap among components is permissible or not.  REDCap setup is a good time to consider how intervention component activities and assessment activities are temporally organized.  
 
-### Record-specific events
+Think about the timeline of study events for an invidual study participant.  All potential participants start with screening events used to determine eligibility.  This is a one of the events which will be common to all participants.  Other events common to all participants may be: 1) a baseline interview; 2) randomization to a condition; and 3) one or more follow-up interviews.  Based on the results of randomization, condition-specific events will come into play.  The typical MOST study will need at least one arm for the common events occuring prior to randomization as well as arms for each unique study condition.  For example, a 2 * 2 * 2 full factorial design with 8 unique conditions would have at least nine arms in REDCap.
+
 ### Days-offset
-### Specifies the “ideal” time for an activity as well as a range during which the activity can be completed Defining Longitudinal Events (5 min)
-### Each event can have one or more instruments Designating Instruments for Events (3 min)
-### Events and instruments can be repeated in a longitudinal project Repeating Instruments and Events (33 min)
+Days-offset is part of defining events for an arm.  It specifies the “ideal” time for an activity as well as a range during which the activity can be completed.  Implicitly, days-offset also specifies the order in which events for an arm will take place.  [Defining Longitudinal Events (5 min)](blob:https://redcap.vanderbilt.edu/798d480c-4eb5-4c1b-a2b0-d5a6641fc06d)
 
-## Organization of study activities into “Arms”
-### Arms are a way to pull together a collection of events
-### Screening
-### Baseline interview
-### Randomization
-### Each MOST study condition may have an arm devoted to it to facilitate events and data collection that are specific to the condition
-### Follow-up interviews
 
-## Calendar application and scheduling
-### Schedule for individuals in one place
-### Based on series of events which apply to a specific record (individual participant), the calendar is populated with record-specific events
-### The ideal time for an event can be changed to a time more convenient for the project and participant
-### Calendar can be used to see what events are scheduled and to enter a data collection form associated with the scheduled event (e.g., if the scheduled event is a baseline interview, following the calendar link will open the baseline interview data collection forms).   
+### Designating Instruments for Events
+Each event can be connected with one or more instruments to be completed during the event.  [Designating Instruments for Events (3 min)](blob:https://redcap.vanderbilt.edu/22234cea-4658-4bb6-879b-5c644a0536fb)
+
+### Events and instruments can be repeated in a longitudinal project 
+
+Repeating Instruments and Events (33 min)
+
+## Scheduling and Calendar Application
+### Scheduling
+When a participant experiences the first event in an arm, other events in that arm are scheduled based on defined events and their days-offset.  It is very common to make changes to a participant's default schedule to a time more convenient for the project and participant (e.g., moving an event from a Sunday to a Monday).
+
+### Calendar
+Calendar can be used to see what events are scheduled and to enter a data collection form associated with the scheduled event (e.g., if the scheduled event is a baseline interview, following the calendar link will open the baseline interview data collection forms).
 
 ## Repeating Events and Instruments
 
@@ -276,17 +276,7 @@ Each **arm** in the project is a collection of events in a sequence.  For study 
 
 >If one creates a report that contains data from a repeating instrument or repeating event, a field named 'redcap_repeat_instance' will be included that represents the instance number, which is an auto-numbered value (starting with '1') that gets incremented each time the instrument/event is repeated. And if the report contains data specifically from a repeating instrument (as opposed to a repeating event), then a field named 'redcap_repeat_instrument' will additionally be included that represents the instrument name that denotes to which instrument the row of data belongs. These two fields will only be included automatically in the report or data export if data originates from a repeating instrument or event. Note: Each repeated instance of an instrument or event will be displayed as a new row in the report or export file. This means that if a medications survey is repeated three times for one record, for example, it will be displayed as three rows in the report.
 
-
 ## Randomization Module
-```{r}
-library(tidyverse)
-DF <- expand.grid(Person = 1:800, gender = 1:2)
-DF <- DF %>% mutate(Block = cut(Person, 100))
-set.seed(732212)
-DF <- DF %>% group_by(gender, Block) %>% mutate(scond = sample(1:8)) %>% ungroup()
-write.table(DF %>% select(scond, gender), file = "atab.csv", row.names = FALSE, sep = ",")
-```
-
 The randomization module sets up REDCap to randomly assign participants to specific study groups.  
 Setup includes the following steps:  
 1. Define your randomization model  
@@ -298,6 +288,26 @@ Randomization can be stratified by one or more variables collected before the ra
 The table of allocations used by REDCap is generated outside of REDCap and saved in comma-delimited format.  The comma-delimited allocation table is uploaded to REDCap as the third and final step in setting up the randomization module.  In the example shown in the figure below, participants are assigned to one of eight study conditions and random assignment is stratified by gender.
 
 ![**Figure 7**. Table of Random Allocations for Upload to REDCap](Screenshot 2018-08-28 12.18.30.png)
+Include more assignments than you believe you will need in the table of allocations to allow for participant drop-out and drop-in as well as uncertainty in the proportion of participants enrolled in each strata.  For example, if the study design calls for randomization to eight conditions stratified by gender and forty participants in each condition, you might generate an allocation table with sixty assignments per condition in each strata (i.e., a total of 60 * 8 * 2 = 960).
+
+Here is an example of generating the allocation table for stratified random assignment using R:
+
+```{r}
+library(tidyverse)
+DF <- expand.grid(Person = 1:800, gender = 1:2)
+DF <- DF %>% mutate(Block = cut(Person, 100))
+set.seed(732212)
+DF <- DF %>% 
+  group_by(gender, Block) %>% 
+  mutate(scond = sample(1:8)) %>% 
+  ungroup()
+write.table(DF %>% select(scond, gender), file = "atab.csv", row.names = FALSE, sep = ",")
+```
+
+### Randomization Dashboard
+When the project is underway and some participants have been assigned to conditions, the Randomization Module includes a dashboard showing the number of participants (records) assigned to each condition in each strata, which is useful for tracking enrollment progress.
+
+![**Figure 8**. Randomization Module Dashboard](Screenshot 2018-08-29 08.26.43.png)
 
 ## Reports
 
@@ -308,25 +318,25 @@ There are four steps to building a report:
 3. Select cases to include using logic applied to data fields (e.g., only show female participants)  
 4. Select data fields used to order the results (e.g., sort report by age)  
 
-![**Figure 8**. Reports Example](Screenshot 2018-08-28 12.11.34.png)
+![**Figure 9**. Reports Example](Screenshot 2018-08-28 12.11.34.png)
 
 ## Record Status Dashboard
 
 The Record Status Dashboard allows project staff to see which data entry forms have been completed for different individual participants.
 
-![**Figure 9**. Record Status Dashboard](Screenshot 2018-08-28 12.15.56.png)
+![**Figure 10**. Record Status Dashboard](Screenshot 2018-08-28 12.15.56.png)
 
 ## Data Export
 
 ### Pulling REDCap data by API
 
-REDCap project data can be exported using an "Application Programming Interface" (API), which is just a way to request the export within a program rather than manually pointing and clicking.  Thus, API makes the process of regularly exporting data for summaries and project management smoother and more efficient. 
+REDCap project data can be exported using an "Application Programming Interface" (API), which is just a way to request the export within a program rather than manually pointing and clicking.  Thus, API makes the process of regularly exporting data for summaries and project management smoother and more efficient.  Using API for export will most likely require a user-specific *token* which is request from your institutions REDCap administrator.  The token is a security measure used to authenticate a user's identity and rights to work with the data programatically for a specific REDCap project.  API is likely something only one or a very limited number of project staff will need and have rights to use.  
 
 ### Data from smaller projects can be exported manually within REDCap too
 
 REDCap can export to the following formats: comma-delimited; SPSS; SAS; R; Stata; and XML.  The export interface can be accessed from the Project Home tab of your REDCap project.
 
-![**Figure 7**. Manual Data Export within REDCap](Screenshot 2018-08-20 11.34.24.png)
+![**Figure 11**. Manual Data Export within REDCap](Screenshot 2018-08-20 11.34.24.png)
   
 ## Things more easily done outside of REDCap
 
@@ -336,21 +346,19 @@ It is very likely you will want and need to do things with the collected data th
 
 Generating a simple list of participants with intervention activity due and completion dates can be useful for managing and driving completion of intervention activities.
 
-![**Figure 8**. MS-Excel Intervention Activity Tracking List](Screenshot 2018-08-27 10.01.32.png)
+![**Figure 12**. MS-Excel Intervention Activity Tracking List](Screenshot 2018-08-27 10.01.32.png)
 
 ### Review follow-up interviewing gaps
 
 Generating a simple list of participants with interview target, earliest, and due dates, as well as days remaining and interview completion can be useful for managing and driving completion of interviews.
 
-![**Figure 9**. MS-Excel Interview Tracking List](Screenshot 2018-08-27 09.52.52.png)
+![**Figure 13**. MS-Excel Interview Tracking List](Screenshot 2018-08-27 09.52.52.png)
 
 ## REDCap Development and Production Modes  
 REDCap has a **development** and a **production** mode. The development mode allows one to incrementally build and test project components.  The production mode is meant for real data collection and project management.  It is possible to make some changes after moving the project from the development to the production mode, but once in production changes should be made with extreme care.  
 
 ## REDCap is actively developed
 Researchers using REDCap to manage MOST and other types of studies need to be aware of new features and system changes which may impact aspects of your project.  These changes are generally enhancements (new features) which don't have to be adopted in the middle of a project.  New REDCap features may require changes to this manual over time.
-
-![**Figure 1**. Project Setup](Screenshot 2018-08-15 14.48.53.png)
 
 # A MOST REDCap project providing an example
 
@@ -364,7 +372,7 @@ Following the table above
 
 ## Enter the New Projects Tab of REDCap to select a project name and type
 
-![**Figure 1**. Project Setup](Screenshot 2018-08-15 14.48.53.png)
+![**Figure 14**. Project Setup](Screenshot 2018-08-29 08.46.59.png)
 
 ## Longitudinal Project Setup Steps
 
@@ -424,7 +432,11 @@ Each randomly assigned study condition will have a different mix of events, depe
 
 # Supplemental File: An Example REDCap Project for a MOST Study
 
-You can download the example REDCap project (XML) [here](https://clelandcm.github.io/REDCap-MOST/Manual.XML).
+You can download the example REDCap project (XML) [here](https://clelandcm.github.io/REDCap-MOST/Manual.XML).  
+
+This XML file can be pointed to when creating a new project within REDCap.
+
+![**Figure 15**. Create New Project from XML File](Screenshot 2018-08-29 08.07.59.png)
 
 # Concluding Thoughts
 
