@@ -171,7 +171,7 @@ Both the online designer and the data dictionary allow customization of formatti
 ## Interview Items and Other Data Collection Fields
 ### Item types  
 
-REDCap offers a wide variety of survey and interview item types.
+REDCap offers a wide variety of survey and interview [item types](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=field_types02.mp4).
 
 * Text box (short text, number, date/time, etc)
 * Notes box (paragraph text)
@@ -239,22 +239,29 @@ Each **arm** in the project is a collection of events in a sequence.  In a MOST 
 Think about the timeline of study events for an invidual study participant.  All potential participants start with screening events used to determine eligibility.  This is a one of the events which will be common to all participants.  Other events common to all participants may be: 1) a baseline interview; 2) randomization to a condition; and 3) one or more follow-up interviews.  Based on the results of randomization, condition-specific events will come into play.  The typical MOST study will need at least one arm for the common events occuring prior to randomization as well as arms for each unique study condition.  For example, a 2 * 2 * 2 full factorial design with 8 unique conditions would have at least nine arms in REDCap.
 
 ### Days-offset
-Days-offset is part of defining events for an arm.  It specifies the “ideal” time for an activity as well as a range during which the activity can be completed.  Implicitly, days-offset also specifies the order in which events for an arm will take place.  [Defining Longitudinal Events (5 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=define_events02.mp4)
+Days-offset is part of defining events for an arm.  It specifies the “ideal” time for an activity as well as a range during which the activity can be completed.  Implicitly, days-offset also specifies the order in which events for an arm will take place.  
 
+[Defining Longitudinal Events (5 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=define_events02.mp4)
 
 ### Designating Instruments for Events
-Each event can be connected with one or more instruments to be completed during the event.  [Designating Instruments for Events (3 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=designate_instruments02.mp4)
+Each event can be connected with one or more data collection instruments to be completed during the event.  
+
+[Designating Instruments for Events (3 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=designate_instruments02.mp4)
 
 ### Events and instruments can be repeated in a longitudinal project 
 
-Repeating Instruments and Events (33 min)
+[Repeating Instruments and Events (33 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=repeating_forms_events01.mp4)
 
 ## Scheduling and Calendar Application
 ### Scheduling
 When a participant experiences the first event in an arm, other events in that arm are scheduled based on defined events and their days-offset.  It is very common to make changes to a participant's default schedule to a time more convenient for the project and participant (e.g., moving an event from a Sunday to a Monday).
 
+[Scheduling Module (7 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=scheduling02.mp4)
+
 ### Calendar
 Calendar can be used to see what events are scheduled and to enter a data collection form associated with the scheduled event (e.g., if the scheduled event is a baseline interview, following the calendar link will open the baseline interview data collection forms).
+
+[The Calendar (7 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=calendar02.mp4)
 
 ## Repeating Events and Instruments
 
@@ -330,7 +337,27 @@ The Record Status Dashboard allows project staff to see which data entry forms h
 
 ### Pulling REDCap data by API
 
-REDCap project data can be exported using an "Application Programming Interface" (API), which is just a way to request the export within a program rather than manually pointing and clicking.  Thus, API makes the process of regularly exporting data for summaries and project management smoother and more efficient.  Using API for export will most likely require a user-specific *token* which is request from your institutions REDCap administrator.  The token is a security measure used to authenticate a user's identity and rights to work with the data programatically for a specific REDCap project.  API is likely something only one or a very limited number of project staff will need and have rights to use.  
+REDCap project data can be exported using an "Application Programming Interface" (API), which is just a way to request the export within a program rather than manually pointing and clicking.  Thus, API makes the process of regularly exporting data for summaries and project management smoother and more efficient.  Using API for export will most likely require a user- and project-specific *token* which is requested from your institution's REDCap administrator.  The token is a security measure used to authenticate a user's identity and rights to work with the data programatically for a specific REDCap project.  API is likely something only one or a very limited number of project staff will need and have rights to use.
+
+Here is an example of an R program which exports all data from a REDCap project and saves it in Rdata format:
+```{r, eval=FALSE, echo=TRUE}
+library(redcapAPI)
+library(openxlsx)
+
+tkns <- read.xlsx("tkns.xlsx")
+
+rcon <- redcapConnection(url = 'https://openredcap.nyumc.org/apps/redcap/api/', token=tkns[4,3])
+
+projdata <- exportRecords(rcon, batch.size = 700)
+
+save(list=c('projdata'), file = "projdata.Rdata")
+```
+
+The MS-Excel file contains the token needed for authentication.  Reading it from a file this way keeps the token private.  The combination of the institution's REDCap server, the user's identity, and the token uniquely identify the project from which data should be exported.  
+
+For these steps to work, you may need to be behind your institution's firewall, or may need to establish a secure VPN connection with your institution if working remotely.  Contact your institution's REDCap administrator if you have problems getting data export via API to work.
+
+Once the exported data have been saved locally or in a secure shared folder, detailed regular summaries can be run. 
 
 ### Data from smaller projects can be exported manually within REDCap too
 
@@ -362,10 +389,10 @@ Researchers using REDCap to manage MOST and other types of studies need to be aw
 
 # A MOST REDCap project providing an example
 
-The example illustrates the steps to set up a REDCap project for 2 x 2 x 2 full factorial design.  Therefore, the example study has **8** conditions.  Arms will be created to organize events related to the following study parts:
+The example illustrates the steps to set up a REDCap project for a 2 x 2 x 2 full factorial design.  Therefore, the example study has **8** conditions.  Arms will be created to organize events related to the following study parts:
 
 1. screening for eligibility
-2. assessments common to all participants, including locator, a baseline interview, randomization, and a follow-up interview 
+2. assessments common to all participants, including locator, a baseline interview, randomization, and two follow-up interviews 
 3. condition-specific events which utilize schedules tailored to individual study conditions and collect data related to the intervention activities in each study condition
 
 Following the table above
