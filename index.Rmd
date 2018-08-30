@@ -239,27 +239,35 @@ Each **arm** in the project is a collection of events in a sequence.  In a MOST 
 Think about the timeline of study events for an invidual study participant.  All potential participants start with screening events used to determine eligibility.  This is a one of the events which will be common to all participants.  Other events common to all participants may be: 1) a baseline interview; 2) randomization to a condition; and 3) one or more follow-up interviews.  Based on the results of randomization, condition-specific events will come into play.  The typical MOST study will need at least one arm for the common events occuring prior to randomization as well as arms for each unique study condition.  For example, a 2 * 2 * 2 full factorial design with 8 unique conditions would have at least nine arms in REDCap.
 
 ### Days-offset
-Days-offset is part of defining events for an arm.  It specifies the “ideal” time for an activity as well as a range during which the activity can be completed.  Implicitly, days-offset also specifies the order in which events for an arm will take place.  
+Days-offset is part of defining events for an arm.  When the scheduling module is turned on, days-offset specifies the “ideal” time for an activity as well as a range during which the activity can be completed.  Implicitly, days-offset also specifies the order in which events for an arm will take place, as well as the interval of time between events.  **Offset Range** puts a window around the event time, providing flexibility in the exact timing of the event.  Each **arm** has its own definition of events, including days offset.
 
 [Defining Longitudinal Events (5 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=define_events02.mp4)
 
 ### Designating Instruments for Events
-Each event can be connected with one or more data collection instruments to be completed during the event.  
+Each event can be connected with one or more data collection instruments to be completed during the event.  This allows the same instrument to be completed on more than one occasion.  Think of a grid with specific data collection instruments as row names and specific events as column names.  The designation of instrument for events entails identifying which instruments should be administered during each event.  As each **arm** has a unique set of events, designation of instruments is done separately for each **arm**.
 
 [Designating Instruments for Events (3 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=designate_instruments02.mp4)
 
 ### Events and instruments can be repeated in a longitudinal project 
 
+There are at least three ways to repeat collection of the same data fields over time.
+
+One approach is to **embed the same interview item in different instruments** (with different variable names).  This is an attractive approach if you have fairly long baseline and follow-up interviews which need small changes from one time point to another and you do not want to break up the interview into many smaller instruments.  Having the baseline interview as a single instrument will mean less starting and stopping within a long interview session.     
+
+A second approach is to **specify every event ahead of time**, and repeat an instrument across multiple events.  
+
+A third approach is to turn on functionality for repeating instruments or, in a longitudinal project, repeating instruments and/or events an **unlimited and unknown number of times**.
+
 [Repeating Instruments and Events (33 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=repeating_forms_events01.mp4)
 
 ## Scheduling and Calendar Application
 ### Scheduling
-When a participant experiences the first event in an arm, other events in that arm are scheduled based on defined events and their days-offset.  It is very common to make changes to a participant's default schedule to a time more convenient for the project and participant (e.g., moving an event from a Sunday to a Monday).
+When a participant experiences the first event in an arm, other events in that arm are scheduled based on defined events and their days-offset.  It is very common to make changes to a participant's default schedule to a time more convenient for the project and participant (e.g., moving an event from a Sunday to a Monday).  Record-specific scheduled events will appear on the project's calendar, along with the record's unique identifier.
 
 [Scheduling Module (7 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=scheduling02.mp4)
 
 ### Calendar
-Calendar can be used to see what events are scheduled and to enter a data collection form associated with the scheduled event (e.g., if the scheduled event is a baseline interview, following the calendar link will open the baseline interview data collection forms).
+Calendar can be used to see what record-specific events are scheduled and to enter a data collection form associated with the scheduled event (e.g., if the scheduled event is a baseline interview, following the calendar link will open the baseline interview data collection forms).  The calendar shows the event and the unique identifier, so project staff know which participants need which events on a given day.
 
 [The Calendar (7 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=calendar02.mp4)
 
@@ -371,13 +379,13 @@ It is very likely you will want and need to do things with the collected data th
 
 ### Review intervention activity gaps
 
-Generating a simple list of participants with intervention activity due and completion dates can be useful for managing and driving completion of intervention activities.
+Generating a simple list of participants with intervention activity due and completion dates can be useful for managing and driving completion of intervention activities.  This can be a useful supplement to what can be achieved within REDCap with **Reports** and the **Record Status Dashboard**.
 
 ![**Figure 12**. MS-Excel Intervention Activity Tracking List](Screenshot 2018-08-27 10.01.32.png)
 
 ### Review follow-up interviewing gaps
 
-Generating a simple list of participants with interview target, earliest, and due dates, as well as days remaining and interview completion can be useful for managing and driving completion of interviews.
+Generating a simple list of participants with interview target, earliest, and due dates, as well as days remaining and interview completion can be useful for managing and driving completion of interviews.  This can be a useful supplement to what can be achieved within REDCap with **Reports** and the **Record Status Dashboard**.
 
 ![**Figure 13**. MS-Excel Interview Tracking List](Screenshot 2018-08-27 09.52.52.png)
 
