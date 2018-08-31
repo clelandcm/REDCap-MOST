@@ -115,7 +115,7 @@ In this example, study conditions are given fish names. With more than 16 condit
 Before you begin the setup of a MOST study, familiarize yourself with the REDCap system. Good starting points are the [brief](https://flash.its.vanderbilt.edu/html5/redcap/streams/_definst_/redcap_overview_brief02.mp4) and [detailed](https://flash.its.vanderbilt.edu/html5/redcap/streams/_definst_/redcap_overview03.mp4) overview videos.
 
 ![**Figure 1**. REDCap Overview Videos](Screenshot 2018-08-20 10.12.38.png)
-## Types of REDCap projects
+## Types of REDCap Projects
 
   REDCap offers a variety of project types.
   
@@ -123,7 +123,7 @@ Before you begin the setup of a MOST study, familiarize yourself with the REDCap
 
 If your interest is using REDCap to manage the complex set of activities in a typical MOST study (multiple conditions, condition-specific and common activities), you almost certainly want the **Longitudinal+Scheduling** project type. 
 
-## Ways to build a REDCap project
+## Ways to Build a REDCap Project
 
 In addition to the various **whole project settings** within REDCap, there are two ways to build the data collection fields of a REDCap project: the online designer and the data dictionary.
 
@@ -236,7 +236,7 @@ The entry point for setting up events within REDCap is the **Project Setup** tab
   
 Each **arm** in the project is a collection of events in a sequence.  In a MOST study, each condition may have a unique sequence of study events, and arms in REDCap are a way to specify different events for different participants.  For study conditions which receive multiple components, REDCap setup is an opportunity to consider the order in which those components will be delivered to participants, and whether temporal overlap among components is permissible or not.  REDCap setup is a good time to consider how intervention component activities and assessment activities are temporally organized.  
 
-Think about the timeline of study events for an invidual study participant.  All potential participants start with screening events used to determine eligibility.  This is a one of the events which will be common to all participants.  Other events common to all participants may be: 1) a baseline interview; 2) randomization to a condition; and 3) one or more follow-up interviews.  Based on the results of randomization, condition-specific events will come into play.  The typical MOST study will need at least one arm for the common events occuring prior to randomization as well as arms for each unique study condition.  For example, a 2 * 2 * 2 full factorial design with 8 unique conditions would have at least nine arms in REDCap.
+Think about the timeline of study events for an invidual study participant.  All potential participants start with screening events used to determine eligibility.  This is a one of the events which will be common to all participants.  Other events common to all participants may be: 1) a baseline interview; 2) randomization to a condition; and 3) one or more follow-up interviews.  Based on the results of randomization, condition-specific events will come into play.  The typical MOST study will need at least one arm for the common events occuring prior to randomization as well as arms for each unique study condition.  For example, a 2 * 2 * 2 full factorial design with 8 unique conditions would have at least nine arms in REDCap.  If you organize the project for your MOST study in this way, REDCap will warn you that a record (participant) is present in more than one arm of the project.  But it does allow this, and with the same participant in more than one arm you benefit from REDCap handling randomization, study activities before randomization, as well as condition-specific events. 
 
 ### Days-offset
 Days-offset is part of defining events for an arm.  When the scheduling module is turned on, days-offset specifies the “ideal” time for an activity as well as a range during which the activity can be completed.  Implicitly, days-offset also specifies the order in which events for an arm will take place, as well as the interval of time between events.  **Offset Range** puts a window around the event time, providing flexibility in the exact timing of the event.  Each **arm** has its own definition of events, including days offset.
@@ -252,11 +252,13 @@ Each event can be connected with one or more data collection instruments to be c
 
 There are at least three ways to repeat collection of the same data fields over time.
 
-One approach is to **embed the same interview item in different instruments** (with different variable names).  This is an attractive approach if you have fairly long baseline and follow-up interviews which need small changes from one time point to another and you do not want to break up the interview into many smaller instruments.  Having the baseline interview as a single instrument will mean less starting and stopping within a long interview session.     
+One approach is to **embed the same interview item in different instruments** (with different variable names).  This is an attractive approach if you have fairly long baseline and follow-up interviews which need small changes from one time point to another and you do not want to break up the interview into many smaller instruments.  Having the baseline interview as a single instrument will mean less starting and stopping within a long interview session.  Also, if create distinct instruments with overlapping items, you can customize aspects of each interview.  For example, piping can be used to remind the participant of the last interview date.     
 
-A second approach is to **specify every event ahead of time**, and repeat an instrument across multiple events.  
+A second approach is to **specify every event ahead of time**, and repeat one ore more instruments across multiple events.  This approach is attractive for elements of study activities that are more structured and planned out ahead of time.  For example, you may have a baseline interview and a small number of follow-up interviews which need to take place within a specific window of time.  An instrument you plan to administer multiple times can be specified once.  The time points at which interviews will be administered are specified as events.  Then instruments are linked to events as described under **Designating Instruments for Events**.  This approach allows you to use REDCap to schedule when each of the planned events will happen for individual participants.
 
-A third approach is to turn on functionality for repeating instruments or, in a longitudinal project, repeating instruments and/or events an **unlimited and unknown number of times**.
+A third approach is to turn on functionality for repeating instruments or, in a longitudinal project, repeating instruments and/or events an **unlimited and unknown number of times**.  The is useful when an event needs to be repeated frequently or an unknown number of times.  One example of where this may be the most efficient approach is asking about contacts in an intensive intervention component.  The number and spacing of contacts will vary across participants and will not be known in advance.  Rather than generating many contact events or fields, a small set of fields related to a contact (date, mode, staff, duration, outcome) can be repeated as often as needed.  
+
+A mix of these approaches can be used for different instruments.  The approach used has implications for how data will be organized when exported (longer vs. wider format).  Be prepared to figure out how the exported data are organized and to do some reshaping of the exported data.
 
 [Repeating Instruments and Events (33 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=repeating_forms_events01.mp4)
 
@@ -270,26 +272,6 @@ When a participant experiences the first event in an arm, other events in that a
 Calendar can be used to see what record-specific events are scheduled and to enter a data collection form associated with the scheduled event (e.g., if the scheduled event is a baseline interview, following the calendar link will open the baseline interview data collection forms).  The calendar shows the event and the unique identifier, so project staff know which participants need which events on a given day.
 
 [The Calendar (7 min)](https://web.vanderbilt.edu/clients/video-player/player.php?dir=redcap&file=calendar02.mp4)
-
-## Repeating Events and Instruments
-
->REDCap has the ability to repeat a data collection instrument or an entire event of instruments an unlimited number of times without having to specify the amount needed. This is sometimes called one-to-many data collection, in which a project can have one or more repeating parts. For example, if each record in a hypothetical project represents a person, then one might have a repeating instrument for medications, one for family members, one or adverse events, and one for collecting data over multiple visits (or weekly surveys), so that each repeating element is connected to the overall record but can repeat independently of the other instruments. So if using repeating instruments or repeating events, each record in the project can have a different number of repeated instances of any given instrument or event. One record may have five medications, but another may have two or none, for example. Such flexibility makes this feature very powerful, and setting up repeating instruments and/or repeating events in a project is very quick and easy. The repeating instruments/events feature can be enabled and set up by clicking the Enable button in the Optional Modules section on the Project Setup page.
-
-### Repeating Instruments (for classic and longitudinal projects)
-
->Classic projects (i.e., in which the longitudinal module is not enabled) can utilize repeating instruments as a very simple way of doing longitudinal data collection. When traditionally using the longitudinal module in a project, one downside is that one must specify all the events (i.e., the repetitions of instruments) ahead of time, making sure to build out the maximum number of events that one might need, even though all of them likely won't be used by all records. However, with the repeating instruments functionality, one does not need to specify how many repetitions will needed ahead of time; one can simply repeat an instrument an unlimited amount of times. It is important to note that multiple instruments in a project can be enabled as repeating instruments (even all of them, if one wishes). Projects utilizing the longitudinal module can have repeating instruments as well, in which one or more instruments on any defined event can be set to repeat within that event. The repeating instruments functionality behaves very much the same way in both classic and longitudinal projects.
-
-### Repeating Events (for longitudinal projects only)
-
->If a project has the longitudinal module enabled, it can utilize the repeating events feature, which works somewhat differently than the repeating instruments feature. While the repeating instruments feature allows one to repeat a given instrument as a single unit, the repeating events feature allows one to repeat an entire event of instruments together in unison. This might be useful if one has several instruments whose data correlates together, such as completing multiple surveys back to back for a specific time-point or visit, for example. Previously, one may have had to create X number of identical events to capture repeating data for the instruments on those events (e.g., Week 1, Week 2, ...), but the repeating events feature makes this much simpler by allowing one to create only one single event that can be repeated in unlimited fashion.
-
-### Enabling Surveys for Repeating Instruments
-
->If one wishes to allow survey respondents to enter their responses in a repeating fashion in survey mode alone, one must enable an optional setting near the bottom of the Survey Settings page (in the survey termination options section) *after* an instrument has been set as a repeating instrument. So it is one additional step to do after enabling the instrument itself as a repeating instrument. When the repeat survey setting is enabled, it will display a button at the end of the survey so that the respondent can choose to enter another response for the survey, thus essentially allowing them to take the survey multiple times in a row. In this way, they will be able to enter as many responses for that same survey as they need. For example, if a REDCap project is aimed at mothers, and the repeating survey is for collecting data about each of the mother's children, the mother could complete the survey once for each child, thus allowing mothers with one child or six children to easily enter their data in a quick back-to-back fashion by repeating the survey. 
-
-### Reports and Data Exports with Repeating Instruments and Events
-
->If one creates a report that contains data from a repeating instrument or repeating event, a field named 'redcap_repeat_instance' will be included that represents the instance number, which is an auto-numbered value (starting with '1') that gets incremented each time the instrument/event is repeated. And if the report contains data specifically from a repeating instrument (as opposed to a repeating event), then a field named 'redcap_repeat_instrument' will additionally be included that represents the instrument name that denotes to which instrument the row of data belongs. These two fields will only be included automatically in the report or data export if data originates from a repeating instrument or event. Note: Each repeated instance of an instrument or event will be displayed as a new row in the report or export file. This means that if a medications survey is repeated three times for one record, for example, it will be displayed as three rows in the report.
 
 ## Randomization Module
 The randomization module sets up REDCap to randomly assign participants to specific study groups.  
@@ -309,14 +291,14 @@ Here is an example of generating the allocation table for stratified random assi
 
 ```{r}
 library(tidyverse)
-DF <- expand.grid(Person = 1:800, gender = 1:2)
+DF <- expand.grid(Person = 1:800, scr1_gender = 1:2)
 DF <- DF %>% mutate(Block = cut(Person, 100))
 set.seed(732212)
 DF <- DF %>% 
-  group_by(gender, Block) %>% 
-  mutate(scond = sample(1:8)) %>% 
+  group_by(scr1_gender, Block) %>% 
+  mutate(rand_scond = sample(3:10)) %>% 
   ungroup()
-write.table(DF %>% select(scond, gender), file = "atab.csv", row.names = FALSE, sep = ",")
+write.table(DF %>% select(rand_scond, scr1_gender), file = "atab.csv", row.names = FALSE, sep = ",")
 ```
 
 ### Randomization Dashboard
@@ -397,13 +379,20 @@ Researchers using REDCap to manage MOST and other types of studies need to be aw
 
 # A MOST REDCap project providing an example
 
-The example illustrates the steps to set up a REDCap project for a 2 x 2 x 2 full factorial design.  Therefore, the example study has **8** conditions.  Arms will be created to organize events related to the following study parts:
+The example illustrates the steps to set up a REDCap project for a 2 x 2 x 2 full factorial design.  The intervention components in the example project are: 1) video; 2) support groups; and 3) text messages.  Video has brief and detailed levels while the other two intervention components are either on or off.
 
-1. screening for eligibility
-2. assessments common to all participants, including locator, a baseline interview, randomization, and two follow-up interviews 
-3. condition-specific events which utilize schedules tailored to individual study conditions and collect data related to the intervention activities in each study condition
+| Condition | Name    | Video       | Text Messages | Support Groups |
+|:---------:|:-------:|:-----------:|:-------------:|:--------------:|
+| 1         | tuna    | 20 minutes  | Yes           |  Yes           |
+| 2         | salmon  | 20 minutes  | Yes           |  No            |
+| 3         | marlin  | 20 minutes  | No            |  Yes           |
+| 4         | bass    | 20 minutes  | No            |  No            |  
+| 5         | trout   | 3 minutes   | Yes           |  Yes           |  
+| 6         | shark   | 3 minutes   | Yes           |  No            |  
+| 7         | carp    | 3 minutes   | No            |  Yes           |  
+| 8         | halibut | 3 minutes   | No            |  No            |
 
-Following the table above
+Therefore, the example study has **8** conditions.
 
 ## Enter the New Projects Tab of REDCap to select a project name and type
 
@@ -411,67 +400,104 @@ Following the table above
 
 ## Longitudinal Project Setup Steps
 
-1. Main Project Settings
+### Main Project Settings
 
-* Use surveys in this project
-* Use longitudinal data collection with defined events
-* Turn on the **Scheduling module**
-* Turn on the **Randomization module**
+* Enable: **Use surveys in this project**
+* Enable: **Use longitudinal data collection with defined events**
+* Enable: **Repeatable instruments and events**
+* Enable: **Scheduling module**
+* Enable: **Randomization module**
+* Disable: **Auto-numbering for records**
 
-2. Create study arms with **Define My Events**
+![**Figure 15**. Main Project Settings](Screenshot 2018-08-31 08.00.06.png)
 
-* Screening
-* Assessment
-* tuna
-* salmon
-* marlin
-* bass
-* trout
-* shark
-* carp
-* halibut
+### Arms
 
-Why did we not having the screening steps as part of the Assessment arm?
+Arms will be created to organize events related to the following study parts:
 
-The first event in the screening arm, a brief eligibility interview, is common to all potential study participants. There could be additional events in the screening arm for things like results of biological tests and documentation of a status related to eligibility criteria (e.g., ).  The goal of the screening arm is to assess various aspects of eligibility criteria, documenting who is eligible and, if not eligible, the reasons why.  Only potential participants who are eligible proceed to the main study.  Informed consent may be obtained from eligible individuals near the end of the screening arm.
+1. screening for eligibility
+2. assessments common to all participants, including locator, a baseline interview, randomization, and two follow-up interviews 
+3. condition-specific events which utilize schedules tailored to individual study conditions and collect data related to the intervention activities in each study condition
 
-The first event in the assessment arm is a baseline interview.  Other events in the assessment arm include one or more follow-up interviews and randomization.  The randomization event in the assessment arm is a manual recording of the assigned study condition by staff.  This can be checked against the condition assigned by the randomization module, with corrections made if needed.
+Create **10** study arms with **Define My Events**.  Specific intervention conditions have been given fish names.
 
-Each randomly assigned study condition will have a different mix of events, depending on which level of each intervention component is required in the condition.  In a full factorial design, one condition may have few or no events related to intervention activities (e.g., a condition in which all components are assigned at an "off" or "absent" level).  Another condition in which multiple components are assigned at an "on" or "present" level will have all of the events associated with each active component. 
+### Instruments
+The example project has the following **13** instruments:  
+1. Unique Id  
+2. Screening  
+3. Baseline Interview  
+4. Patient Health Questionnaire 9  
+5. GAD-7  
+6. Brief Video  
+7. Detailed Video  
+8. Support Groups  
+9. Text Messages  
+10. Locator  
+11. Randomization Form  
+12. Core Component Form  
+13. Randomization Check Form  
 
-3. Define study events
+As described above, instruments can be created via **Online Designer** or the **Data Dictionary**.
 
-4. Define ideal dates/times for events to take place
+### Events
+The example project has the following **41** events across the **10** arms:
+```{r, echo=FALSE}
+library(openxlsx)
+events <- read.xlsx("MOSTManual_Events_2018-08-31.xlsx")
+events %>% select(-custom_event_label) %>% knitr::kable()
+```
 
-5. Designate data collection instruments to be administered at each study event
+### Instrument Designations
+The example project has the following **93** instrument designations.  These specify which instruments should be completed during each event.   
+```{r, echo=FALSE}
+library(openxlsx)
+events <- read.xlsx("MOSTManual_InstrumentDesignations_2018-08-31.xlsx")
+events %>% knitr::kable()
+```
 
-1. Go to the Project Setup tab and locate “Main Project Settings”
-2. Enable: “Use longitudinal data collection with defined events”?
-3. Find “Enable optional modules and customizations”
-4. Select “Scheduling Module (longitudinal only)
+## Moving Through Activities for One Participant
 
-## Screening and baseline interviews
-## Locator
-## Randomization to conditions
-### Stratification factor
-### Full factorial with two components, each with three levels (i.e., 8 study conditions)
+With the example project, you can add new records to move through activities for individual participants and plan workflows for your own MOST study.
 
-## Fields related to intervention activities
-* Activity
-* Date
-* Duration
-* Staff
+The only event in the screening arm, a brief eligibility interview, is common to all potential study participants. There could be additional events in the screening arm for things like results of biological tests and documentation of a status related to eligibility criteria.  The goal of the screening arm is to assess various aspects of eligibility criteria, documenting who is eligible and, if not eligible, the reasons why.  Only potential participants who are eligible proceed to the main study.  Informed consent may be obtained from eligible individuals near the end of the screening arm.
 
-## First follow-up interview
-## Second and final follow-up interview
+After screening may be a good time to generate a schedule for an eligible and enrolled participant.  Schedule generation is arm-specific.  The schedule can be modified over time to accomodate rescheduling and no-shows.
+
+![**Figure 16**. Schedule Generation](Screenshot 2018-08-31 08.01.24.png)
+
+![**Figure 17**. Completed Schedule](Screenshot 2018-08-31 08.03.33.png)
+
+Record-specific scheduled events appear on the project calendar, along with the record unique identifier, and this is a good way to know what activities are coming up.
+
+![**Figure 18**. Project Calendar](Screenshot 2018-08-31 08.04.55.png)
+
+The first event in the assessment arm is a baseline interview.  Other events in the assessment arm include one or more follow-up interviews and randomization.
+
+Once the randomization module has been completely set up, the randomization form will show a button to push for assignment. 
+
+![**Figure 19**. Randomization](Screenshot 2018-08-31 12.04.09.png)
+
+A random assignment to a study condition is made on the assessment arm, and that result needs to be carefully handed off to the correct condition-specific arm.  The Randomization Check Form is a safety measure to ensure the condition-specific arm the participant is being added to matches the condition assigned by the randomization module.  If a mistake has been made and there is not a match, project staff can cancel/back out, recheck the correct condition for the participant, and then add them to that arm.
+
+![**Figure 20**. Randomization Check Form](Screenshot 2018-08-31 12.05.21.png)
+
+A participant assigned to the **tuna** condition of the example project will experience the Core intervention, the detailed video, three support group meetings, and two text messges.  The Core event can be used to deliver any information or intervention content that will be common to all participants.
+
+Scheduling of condition-specific events can start once random assignment has been completed and checked.
+
+One follow-up is timed to occur soon after all intervention components should have been received.
+
+A second and final follow-up is timed to occur 150 days after baseline.
+
+In the example project, nearly every event prompts for a new collection of locator.  This may be overkill.  You may not want/need locator information for potential participants merely being screened.  For your own MOST study, consider when locator should be collected for the first time, and when it should be updated/repeated.
 
 # Supplemental File: An Example REDCap Project for a MOST Study
 
-You can download the example REDCap project (XML) [here](https://clelandcm.github.io/REDCap-MOST/Manual.XML).  
+You can download the example REDCap project (XML) [here](https://clelandcm.github.io/REDCap-MOST/Manual.xml).  
 
 This XML file can be pointed to when creating a new project within REDCap.
 
-![**Figure 15**. Create New Project from XML File](Screenshot 2018-08-29 08.07.59.png)
+![**Figure 21**. Create New Project from XML File](Screenshot 2018-08-29 08.07.59.png)
 
 # Concluding Thoughts
 
@@ -479,10 +505,8 @@ This XML file can be pointed to when creating a new project within REDCap.
 * Do not be afraid to create a project and explore away in development mode
 * Contact **Chuck Cleland** (cmc13@nyu.edu) with any comments or suggestions for improving this manual
 
-Blumenberg, C., & Barros, A. J. (2016). Electronic data collection in epidemiological research. The use of REDCap in the Pelotas birth cohorts. _Applied clinical informatics_, 7(3), 672-681.
+# Acknowledgements
 
-Harris, P. A., Taylor, R., Thielke, R., Payne, J., Gonzalez, N., & Conde, J. G. (2009). Research electronic data capture (REDCap)--a metadata-driven methodology and workflow process for providing translational research informatics support. _Journal of biomedical informatics_, 42(2), 377-381.
-
-Tomko, R. L., Gray, K. M., Oppenheimer, S. R., Wahlquist, A. E., & McClure, E. A. (2018). Using REDCap for ambulatory assessment: Implementation in a clinical trial for smoking cessation to augment in-person data collection. _The American journal of drug and alcohol abuse_, 1-16.
+Building a REDCap project to manage our MOST study was a team effort of the NIDA-funded **Heart to Heart 2 Project** (R01DA040480; PIs Marya Gwadz and Linda Collins).  I would especially like to thank **Dawa Sherpa**, who has been our team REDCap expert.
 
          
