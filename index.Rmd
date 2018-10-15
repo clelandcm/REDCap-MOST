@@ -3,14 +3,14 @@ title: "REDCap for MOST Manual"
 author: "Chuck Cleland"
 date: '`r format(Sys.time(), "%B %d, %Y")`'
 output:
+  word_document:
+    toc: no
+    toc_depth: '5'
   html_document:
     highlight: tango
     theme: spacelab
     toc: yes
     toc_depth: 5
-  word_document:
-    toc: no
-    toc_depth: '5'
 always_allow_html: yes
 ---
 
@@ -53,7 +53,7 @@ An example: **CLCJ060769M**
 
 Projects can create a process for collecting the unique identifier that includes a check on the length (exact number of characters) and, if this is the participant's very first study visit, a check that the unique identifier does not already exist in the project.
 
-The unique identifier will be used to recognize and individual participant over time and keep all data related to that participant together through data management steps, so it is critical that it be collected and entered accurately whenever it is needed.  Project staff should be trained on the process for collecting and working with the unique identifier, and it may be useful to inform participants that the elements of the identifier need to be reported consistently over time. 
+The unique identifier will be used to recognize an individual participant over time and keep all data related to that participant together through data management steps, so it is critical that it be collected and entered accurately whenever it is needed.  Project staff should be trained on the process for collecting and working with the unique identifier, and it may be useful to inform participants that the elements of the identifier need to be reported consistently over time. 
 
 ## Assessments
 
@@ -95,7 +95,7 @@ To be more concrete, a participant in a condition which is assigned to the activ
 
 ## Keeping track of intervention components and study conditions
 
-As you prepare to set up REDCap to manage a study, it can be useful to create a table showing the study conditions and which level of each component they receive. Giving the study conditions names, rather than referring to them only with numbers or letters, can make it easier for staff to think about and discuss to activities needed for specific conditions. Consider a 2 x 2 x 2 full factorial design. A table to guide REDCap setup may look something like this:
+As you prepare to set up REDCap to manage a study, it can be useful to create a table showing the study conditions and which level of each component they receive. Giving the study conditions names, rather than referring to them only with numbers or letters, can make it easier for staff to think about and discuss activities needed for specific conditions. Consider a 2 x 2 x 2 full factorial design. A table to guide REDCap setup may look something like this:
 
 | Condition | Name    | Video       | Text Messages | Support Groups |
 |:---------:|:-------:|:-----------:|:-------------:|:--------------:|
@@ -121,7 +121,7 @@ Before you begin the setup of a MOST study, familiarize yourself with the REDCap
   
 ![**Figure 2**. Types of REDCap Projects](Screenshot 2018-08-20 09.02.44.png)
 
-If your interest is using REDCap to manage the complex set of activities in a typical MOST study (multiple conditions, condition-specific and common activities), you almost certainly want the **Longitudinal+Scheduling** project type. 
+If your interest is using REDCap to manage the complex set of activities in a typical MOST study (multiple conditions, condition-specific and common activities), you almost certainly want the **Longitudinal+Scheduling (multi-use data entry forms, defined time points)** project type. 
 
 ## Ways to Build a REDCap Project
 
@@ -154,10 +154,10 @@ Here is a brief description of the content specified in each of the **18** colum
 |  5. Field Label	                               | More detailed text associated with the field; for example, the content of an interview item    |
 |  6. Choices, Calculations, OR Slider Labels	   | Response options or a calculation based on fields collected earlier                            |
 |  7. Field Note	                               | A way to add instructions or other content to the field; for example, "minutes" for a duration |
-|  8. Text Validation Type OR Show Slider Number | Specifies the kind/format of data expected; for exampe, date_mdy for a date field            	|
+|  8. Text Validation Type OR Show Slider Number | Specifies the kind/format of data expected; for example, date_mdy for a date field            	|
 |  9. Text Validation Min	                       | Minimum allowed value for a field with validation                                              |
 | 10. Text Validation Max	                       | Maximum allowed value for a field with validation                                              |
-| 11. Identifier?	                               | Flags fields with identifying information (e.g., name) to facilitate deindentified exports     |
+| 11. Identifier?	                               | Flags fields with identifying information (e.g., name) to facilitate de-indentified exports    |
 | 12. Branching Logic (Show field only if...)	   | A way to specify who should complete the field, based on data collected in other fields        |
 | 13. Required Field?	                           | Does the field have to be completed before continuing?                                         |
 | 14. Custom Alignment	                         | A way to control the alignment of the content shown when the field is completed	              |
@@ -236,7 +236,7 @@ The entry point for setting up events within REDCap is the **Project Setup** tab
   
 Each **arm** in the project is a collection of events in a sequence.  In a MOST study, each condition may have a unique sequence of study events, and arms in REDCap are a way to specify different events for different participants.  For study conditions which receive multiple components, REDCap setup is an opportunity to consider the order in which those components will be delivered to participants, and whether temporal overlap among components is permissible or not.  REDCap setup is a good time to consider how intervention component activities and assessment activities are temporally organized.  
 
-Think about the timeline of study events for an invidual study participant.  All potential participants start with screening events used to determine eligibility.  This is a one of the events which will be common to all participants.  Other events common to all participants may be: 1) a baseline interview; 2) randomization to a condition; and 3) one or more follow-up interviews.  Based on the results of randomization, condition-specific events will come into play.  The typical MOST study will need at least one arm for the common events occuring prior to randomization as well as arms for each unique study condition.  For example, a 2 * 2 * 2 full factorial design with 8 unique conditions would have at least nine arms in REDCap.  If you organize the project for your MOST study in this way, REDCap will warn you that a record (participant) is present in more than one arm of the project.  But it does allow this, and with the same participant in more than one arm you benefit from REDCap handling randomization, study activities before randomization, as well as condition-specific events. 
+Think about the timeline of study events for an individual study participant.  All potential participants start with screening events used to determine eligibility.  This is a one of the events which will be common to all participants.  Other events common to all participants may be: 1) a baseline interview; 2) randomization to a condition; and 3) one or more follow-up interviews.  Based on the results of randomization, condition-specific events will come into play.  The typical MOST study will need at least one arm for the common events occurring prior to randomization as well as arms for each unique study condition.  For example, a 2 * 2 * 2 full factorial design with 8 unique conditions would have at least nine arms in REDCap.  If you organize the project for your MOST study in this way, REDCap will warn you that a record (participant) is present in more than one arm of the project.  But it does allow this, and with the same participant in more than one arm you benefit from REDCap handling randomization, study activities before randomization, as well as condition-specific events. 
 
 ### Days-offset
 Days-offset is part of defining events for an arm.  When the scheduling module is turned on, days-offset specifies the “ideal” time for an activity as well as a range during which the activity can be completed.  Implicitly, days-offset also specifies the order in which events for an arm will take place, as well as the interval of time between events.  **Offset Range** puts a window around the event time, providing flexibility in the exact timing of the event.  Each **arm** has its own definition of events, including days offset.
@@ -254,7 +254,7 @@ There are at least three ways to repeat collection of the same data fields over 
 
 One approach is to **embed the same interview item in different instruments** (with different variable names).  This is an attractive approach if you have fairly long baseline and follow-up interviews which need small changes from one time point to another and you do not want to break up the interview into many smaller instruments.  Having the baseline interview as a single instrument will mean less starting and stopping within a long interview session.  Also, if create distinct instruments with overlapping items, you can customize aspects of each interview.  For example, piping can be used to remind the participant of the last interview date.     
 
-A second approach is to **specify every event ahead of time**, and repeat one ore more instruments across multiple events.  This approach is attractive for elements of study activities that are more structured and planned out ahead of time.  For example, you may have a baseline interview and a small number of follow-up interviews which need to take place within a specific window of time.  An instrument you plan to administer multiple times can be specified once.  The time points at which interviews will be administered are specified as events.  Then instruments are linked to events as described under **Designating Instruments for Events**.  This approach allows you to use REDCap to schedule when each of the planned events will happen for individual participants.
+A second approach is to **specify every event ahead of time** and repeat one or more instruments across multiple events.  This approach is attractive for elements of study activities that are more structured and planned out ahead of time.  For example, you may have a baseline interview and a small number of follow-up interviews which need to take place within a specific window of time.  An instrument you plan to administer multiple times can be specified once.  The time points at which interviews will be administered are specified as events.  Then instruments are linked to events as described under **Designating Instruments for Events**.  This approach allows you to use REDCap to schedule when each of the planned events will happen for individual participants.
 
 A third approach is to turn on functionality for repeating instruments or, in a longitudinal project, repeating instruments and/or events an **unlimited and unknown number of times**.  The is useful when an event needs to be repeated frequently or an unknown number of times.  One example of where this may be the most efficient approach is asking about contacts in an intensive intervention component.  The number and spacing of contacts will vary across participants and will not be known in advance.  Rather than generating many contact events or fields, a small set of fields related to a contact (date, mode, staff, duration, outcome) can be repeated as often as needed.  
 
@@ -280,7 +280,7 @@ Setup includes the following steps:
 2. Download template allocation tables (as Excel/CSV files)  
 3. Upload your allocation table (CSV file)  
 
-Randomization can be stratified by one or more variables collected before the randomization step.  User rights functionality can control which project staff are allowed to randomize.  After the value of the random group is assigned, the random group field becomes read-only and the value can not be changed (by design!).
+Randomization can be stratified by one or more variables collected before the randomization step.  User rights functionality can control which project staff are allowed to randomize.  After the value of the random group is assigned, the random group field becomes read-only and the value cannot be changed (by design!).
 
 The table of allocations used by REDCap is generated outside of REDCap and saved in comma-delimited format.  The comma-delimited allocation table is uploaded to REDCap as the third and final step in setting up the randomization module.  In the example shown in the figure below, participants are assigned to one of eight study conditions and random assignment is stratified by gender.
 
@@ -302,7 +302,7 @@ write.table(DF %>% select(rand_scond, scr1_gender), file = "atab.csv", row.names
 ```
 
 ### Randomization Dashboard
-When the project is underway and some participants have been assigned to conditions, the Randomization Module includes a dashboard showing the number of participants (records) assigned to each condition in each strata, which is useful for tracking enrollment progress.
+When the project is underway, and some participants have been assigned to conditions, the Randomization Module includes a dashboard showing the number of participants (records) assigned to each condition in each strata, which is useful for tracking enrollment progress.
 
 ![**Figure 8**. Randomization Module Dashboard](Screenshot 2018-08-29 08.26.43.png)
 
@@ -327,7 +327,7 @@ The Record Status Dashboard allows project staff to see which data entry forms h
 
 ### Pulling REDCap data by API
 
-REDCap project data can be exported using an "Application Programming Interface" (API), which is just a way to request the export within a program rather than manually pointing and clicking.  Thus, API makes the process of regularly exporting data for summaries and project management smoother and more efficient.  Using API for export will most likely require a user- and project-specific *token* which is requested from your institution's REDCap administrator.  The token is a security measure used to authenticate a user's identity and rights to work with the data programatically for a specific REDCap project.  API is likely something only one or a very limited number of project staff will need and have rights to use.
+REDCap project data can be exported using an "Application Programming Interface" (API), which is just a way to request the export within a program rather than manually pointing and clicking.  Thus, API makes the process of regularly exporting data for summaries and project management smoother and more efficient.  Using API for export will most likely require a user- and project-specific *token* which is requested from your institution's REDCap administrator.  The token is a security measure used to authenticate a user's identity and rights to work with the data programmatically for a specific REDCap project.  API is likely something only one or a very limited number of project staff will need and have rights to use.
 
 Here is an example of an R program which exports all data from a REDCap project and saves it in Rdata format:
 ```{r, eval=FALSE, echo=TRUE}
@@ -367,7 +367,7 @@ Generating a simple list of participants with intervention activity due and comp
 
 ### Review follow-up interviewing gaps
 
-Generating a simple list of participants with interview target, earliest, and due dates, as well as days remaining and interview completion can be useful for managing and driving completion of interviews.  This can be a useful supplement to what can be achieved within REDCap with **Reports** and the **Record Status Dashboard**.
+Generating a simple list of participants with interview target, earliest, and due dates, as well as days remaining and interview completion, can be useful for managing and driving completion of interviews.  This can be a useful supplement to what can be achieved within REDCap with **Reports** and the **Record Status Dashboard**.
 
 ![**Figure 13**. MS-Excel Interview Tracking List](Screenshot 2018-08-27 09.52.52.png)
 
@@ -461,7 +461,7 @@ With the example project, you can add new records to move through activities for
 
 The only event in the screening arm, a brief eligibility interview, is common to all potential study participants. There could be additional events in the screening arm for things like results of biological tests and documentation of a status related to eligibility criteria.  The goal of the screening arm is to assess various aspects of eligibility criteria, documenting who is eligible and, if not eligible, the reasons why.  Only potential participants who are eligible proceed to the main study.  Informed consent may be obtained from eligible individuals near the end of the screening arm.
 
-After screening may be a good time to generate a schedule for an eligible and enrolled participant.  Schedule generation is arm-specific.  The schedule can be modified over time to accomodate rescheduling and no-shows.
+After screening may be a good time to generate a schedule for an eligible and enrolled participant.  Schedule generation is arm-specific.  The schedule can be modified over time to accommodate rescheduling and no-shows.
 
 ![**Figure 16**. Schedule Generation](Screenshot 2018-08-31 08.01.24.png)
 
